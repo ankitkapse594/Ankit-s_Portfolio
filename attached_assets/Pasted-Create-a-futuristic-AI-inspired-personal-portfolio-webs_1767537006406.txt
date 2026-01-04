@@ -1,0 +1,130 @@
+Create a futuristic, AI-inspired personal portfolio website for
+Ankit Kapse – AI Engineer, Data Engineer & Co-Founder.
+
+Overall Visual Identity:
+- Futuristic but clean (not cyberpunk)
+- Dark theme with soft neon accents (electric blue, violet, cyan)
+- Glassmorphism + subtle gradients
+- Calm, premium tech aesthetic similar to AI research labs & startups
+- Minimal text density, strong visual hierarchy
+
+Animation Style (Very Important):
+- Quiet, subtle 3D animations only
+- Smooth micro-interactions, slow easing
+- Light parallax on scroll
+- Floating 3D cards (projects, certifications)
+- No flashy motion, no heavy effects
+
+Tech Design Elements:
+- Soft glowing borders
+- Neural-network inspired background patterns (very subtle)
+- AI waveform / data grid elements in hero section
+- Frosted glass cards with depth and shadows
+
+--------------------------------
+LAYOUT & SECTIONS
+--------------------------------
+
+1. Hero Section (Futuristic Focus)
+   - Large bold name: Ankit Kapse
+   - Role line:
+     “AI Engineer • Data Engineer • Co-Founder”
+   - Short futuristic tagline:
+     “Building intelligent systems through automation, data, and AI.”
+   - 3D floating elements (abstract shapes, cubes, or nodes)
+   - CTA Buttons (glass style):
+     • Download CV
+     • View Projects
+     • Certifications
+
+2. About Me (Minimal Narrative)
+   - Clean, concise AI-focused bio
+   - Highlight automation, AI agents, data pipelines, scalable systems
+   - Animated divider line or pulse effect
+
+3. Experience (Timeline Style)
+   - Vertical timeline with glowing nodes
+   - Feature.AI – Co-Founder
+   - AI & Data Engineering Remote Experience
+   - Subtle hover elevation on cards
+
+4. Projects Section (3D Cards)
+   Display projects as floating glass cards with hover tilt (3D):
+
+   Example Projects:
+   - AI Task Automation System
+     → Intelligent agents automating business workflows
+     → Tech: Python, AI Tools, Automation Frameworks
+
+   - Data Engineering Pipeline
+     → Cloud-based data ingestion, transformation, visualization
+     → Tech: Python, Databases, Cloud Tools
+
+   - Predictive AI Models
+     → Machine learning models for real-world prediction
+     → Tech: ML, Data Analysis, Model Deployment
+
+   - AI-Powered Web Apps
+     → Fast, responsive websites integrated with AI features
+     → Tech: Web Tech + AI APIs
+
+   Each project card:
+   - Subtle 3D tilt on hover
+   - Optional GitHub / Demo icon
+
+5. Skills & Tech Stack (Holographic Grid)
+   - Grid layout with glowing icons
+   - Categories:
+     • AI & ML
+     • Data Engineering
+     • Automation
+     • Web Development
+     • Cloud
+
+6. Certifications (Glass Gallery)
+   - Floating cards with icons
+   - Each card opens Google Drive link in new tab:
+
+   AICTE:
+   https://drive.google.com/drive/folders/1F3LKlOzCh4kLboFmrB3ccdcSeu0s2Kq3
+
+   HackerRank:
+   https://drive.google.com/drive/folders/1gSx-hBfIqmeHST1gbCC4AaCMI00Izz9Y
+
+   AWS:
+   https://drive.google.com/drive/folders/1RmSPhQogUFherI_n2jDjy9bv6i8W7wM9
+
+   Coursera:
+   https://drive.google.com/drive/folders/1IxgFCHQmuFRE1zMmUbdLNP3Q5ePzCBMM
+
+   Forage:
+   https://drive.google.com/drive/folders/1ljl_ycZFd2weu4hQCxshcQpJCZBDgOSV
+
+7. Download CV (High Visibility)
+   - Large glowing button
+   - Glassmorphism card
+   - Available in hero and footer
+
+8. Interests (Minimal Icons)
+   - Yoga • Travel • Cooking • Reading • Exploring
+   - Soft animated icons
+
+9. Contact Section
+   - Minimal futuristic contact card
+   - Email: ankitkapse594@gmail.com
+   - Phone: +91 7499039470
+   - Location: Nagpur, India
+
+Footer:
+- Ultra-minimal footer
+- Soft glow divider
+- Quick access to CV, Projects, Certifications
+- Dark futuristic finish
+
+--------------------------------
+UX RULES
+--------------------------------
+- Fast load time
+- Animations under 300ms
+- Respect accessibility (contrast & motion reduction)
+- Premium, calm, confident AI vibe
