@@ -12,7 +12,8 @@ import {
   Globe,
   Bot,
   Award,
-  ExternalLink
+  ExternalLink,
+  Code2
 } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -168,7 +169,7 @@ export default function Home() {
             </h1>
             
             <h2 className="text-xl md:text-2xl text-muted-foreground font-light mb-8 font-mono">
-              Technical Head • AI-ML Engineer • Web Developer
+              Technical Head • AI-ML Engineer • Web Developer • Data Engineer
             </h2>
             
             <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed">
@@ -426,6 +427,29 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 text-center"
+          >
+            <a
+              href="https://drive.google.com/drive/folders/1Zj6eLnMgGmtL19297EWN71aS3mEL5JNG?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+              data-testid="link-certifications-drive"
+            >
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-full border-primary/30 hover:bg-primary/10 text-primary gap-2"
+              >
+                <ExternalLink size={16} />
+                View All Certificates on Google Drive
+              </Button>
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -496,14 +520,16 @@ export default function Home() {
                   <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">Profiles</p>
                   <div className="flex gap-4">
                     {[
-                      { icon: <Linkedin size={20} />, href: "https://linkedin.com", label: "LinkedIn" },
-                      { icon: <Github size={20} />, href: "https://github.com/AnkitKapse", label: "GitHub" },
+                      { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/ankit-kapse-ak02", label: "LinkedIn" },
+                      { icon: <Github size={20} />, href: "https://github.com/ankitkapse594", label: "GitHub" },
+                      { icon: <Code2 size={20} />, href: "https://codolio.com/profile/ankit_kapse", label: "Codolio" },
                     ].map((social) => (
                       <a 
                         key={social.label}
                         href={social.href} 
                         target="_blank" 
                         rel="noreferrer"
+                        title={social.label}
                         data-testid={`link-${social.label.toLowerCase()}`}
                         className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
                       >

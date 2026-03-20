@@ -63,7 +63,7 @@ export function Navigation() {
             </button>
           ))}
           <a
-            href="https://github.com/AnkitKapse"
+            href="https://github.com/ankitkapse594"
             target="_blank"
             rel="noreferrer"
             className="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 hover:bg-primary/10 text-primary transition-all text-sm font-mono"
