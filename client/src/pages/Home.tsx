@@ -196,6 +196,30 @@ export default function Home() {
                 View Projects
               </Button>
             </div>
+
+            {/* Profile Links */}
+            <div className="flex items-center gap-4 mt-6">
+              <span className="text-xs text-muted-foreground uppercase tracking-widest font-mono">Find me on</span>
+              <div className="flex gap-3">
+                {[
+                  { icon: <Linkedin size={18} />, href: "https://www.linkedin.com/in/ankit-kapse-ak02", label: "LinkedIn" },
+                  { icon: <Github size={18} />, href: "https://github.com/ankitkapse594", label: "GitHub" },
+                  { icon: <Code2 size={18} />, href: "https://codolio.com/profile/ankit_kapse", label: "Codolio" },
+                ].map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={social.label}
+                    data-testid={`link-hero-${social.label.toLowerCase()}`}
+                    className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary hover:bg-primary/5 hover:shadow-[0_0_10px_rgba(0,255,255,0.2)] transition-all"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
           
           <motion.div 
