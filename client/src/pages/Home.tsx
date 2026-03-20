@@ -7,11 +7,12 @@ import {
   Phone,
   Linkedin,
   Github,
-  Twitter,
   Cpu,
   Database,
   Globe,
-  Bot
+  Bot,
+  Award,
+  ExternalLink
 } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -20,13 +21,12 @@ import { useSubmitContact } from "@/hooks/use-contact";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { insertMessageSchema, type InsertMessage } from "@shared/routes";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
-import resumePdf from "@assets/Resume_AnkitKapse_1767536754697.pdf";
+import resumePdf from "@assets/RCOEM_ankit_kapse_resume_1774020852451.pdf";
 
 export default function Home() {
   const contactMutation = useSubmitContact();
@@ -48,53 +48,83 @@ export default function Home() {
 
   const experiences = [
     {
-      company: "Feature.AI",
-      role: "Co-Founder",
-      date: "Jun 2024 - Present",
-      desc: "Leading technical strategy for AI-driven products. Architecting scalable data pipelines and overseeing full-stack development."
+      company: "Rajsanyog",
+      role: "Technical Head",
+      date: "Jun 2025 – Present",
+      location: "Nagpur",
+      points: [
+        "End-to-end web portal development and digital consulting to support political campaigns and organizational needs.",
+        "Implement AI agents and automated tech solutions, including scalable platforms and custom digital tools.",
+        "Startup-focused tech solutions, including scalable platforms and custom digital tools."
+      ]
     },
     {
-      company: "AICTE",
+      company: "AICTE, India",
       role: "AI-ML Virtual Internship",
-      date: "Apr 2025 - Jun 2025",
-      desc: "Developed practical AI/ML solutions, working with large datasets and modern model architectures."
+      date: "May 2025 – Aug 2025",
+      location: "Remote",
+      points: [
+        "Completed training in cloud-based data handling and pipeline development.",
+        "Applied data modelling and database management concepts.",
+        "Utilized tools for data cleaning, transformation, and visualization."
+      ]
     },
     {
-      company: "Data Engineering Virtual Internship",
-      role: "Data Engineer Intern",
-      date: "Jul 2024 - Sep 2024",
-      desc: "Built ETL pipelines, optimized database schemas, and automated data validation workflows."
+      company: "AICTE, India",
+      role: "Data Engineering Virtual Internship",
+      date: "Jul 2024 – Sep 2024",
+      location: "Remote",
+      points: [
+        "Gained practical experience with Python AI frameworks for algorithm implementation.",
+        "Integrated data analysis, predictive modelling, and feature engineering in projects.",
+        "Learned deployment and optimization of AI models in real-world systems."
+      ]
     }
   ];
 
   const projects = [
     {
-      title: "AI Task Automation System",
-      desc: "An intelligent agent system that autonomously prioritizes and executes routine digital tasks using LLMs.",
-      tags: ["Python", "OpenAI API", "Celery", "Redis"]
+      title: "Animal Diseases Detection System",
+      desc: "Built a deep learning model (ResNet50) to detect animal diseases from microscopic images. Developed an end-to-end pipeline with OpenCV preprocessing and real-time prediction. Generated automated reports with disease name, symptoms, and treatment suggestions.",
+      tags: ["Python", "ResNet50", "OpenCV", "Deep Learning"],
+      date: "Jul 2025 – Nov 2025"
     },
     {
-      title: "Data Engineering Pipeline",
-      desc: "High-throughput data ingestion pipeline processing 1M+ events daily with real-time analytics dashboard.",
-      tags: ["Apache Airflow", "Kafka", "PostgreSQL", "dbt"]
-    },
-    {
-      title: "Predictive AI Models",
-      desc: "Machine learning models for forecasting market trends with 85% accuracy on historical validation sets.",
-      tags: ["TensorFlow", "Pandas", "Scikit-learn"]
-    },
-    {
-      title: "AI-Powered Web Apps",
-      desc: "Suite of micro-SaaS applications leveraging generative AI for content creation and image synthesis.",
-      tags: ["React", "Node.js", "Stable Diffusion"]
+      title: "VRAM – Virtual RAM Management Platform",
+      desc: "Developed a cloud-based virtual RAM system to extend smartphone memory and improve processing performance. Built a Node.js backend to offload app states to cloud containers. Implemented compression and edge serialization to enable 10x connectivity with low latency.",
+      tags: ["Node.js", "Cloud Computing", "Edge Serialization", "Performance"],
+      date: "Feb 2025 – Present"
     }
   ];
 
   const skills = [
-    { icon: <Bot size={24} />, category: "AI & ML", items: ["TensorFlow", "PyTorch", "LLMs", "Computer Vision", "NLP"] },
-    { icon: <Database size={24} />, category: "Data Engineering", items: ["ETL Pipelines", "SQL/NoSQL", "Apache Spark", "Airflow", "Kafka"] },
-    { icon: <Globe size={24} />, category: "Web Development", items: ["React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS"] },
-    { icon: <Cpu size={24} />, category: "Cloud & DevOps", items: ["AWS", "Docker", "Kubernetes", "CI/CD", "Linux"] }
+    { icon: <Bot size={24} />, category: "AI & Automation", items: ["AI Automation", "Deep Learning", "Machine Learning", "Computer Vision", "AI Agents"] },
+    { icon: <Database size={24} />, category: "Data & Cloud", items: ["AWS", "Data Analysis", "SQL", "Data Engineering", "Pipeline Dev"] },
+    { icon: <Globe size={24} />, category: "Web Development", items: ["Web Portals", "React", "Node.js", "REST APIs", "Full-Stack"] },
+    { icon: <Cpu size={24} />, category: "Programming", items: ["Python", "JavaScript", "TypeScript", "Data Processing", "Automation"] }
+  ];
+
+  const certifications = [
+    {
+      title: "AWS – Data Engineering",
+      issuer: "Amazon Web Services",
+      desc: "Comprehensive AWS Data Engineering and Cloud Practitioners courses, gaining hands-on experience with core AWS services."
+    },
+    {
+      title: "Google Data Analytics",
+      issuer: "Google / Coursera",
+      desc: "Google Data Analytics Professional Certificate — insights with SQL, spreadsheets, Tableau, and R for data-driven decision-making."
+    },
+    {
+      title: "Programming in Python",
+      issuer: "Coursera",
+      desc: "Proficient in Python programming for data processing, automation, and application development."
+    },
+    {
+      title: "Software Engineering Job Simulation",
+      issuer: "JPMorgan Chase & Co. / Forage",
+      desc: "Processed real-time market data, built and tested features, created interactive visual dashboards for traders, and completed an open-source contribution."
+    }
   ];
 
   return (
@@ -138,16 +168,20 @@ export default function Home() {
             </h1>
             
             <h2 className="text-xl md:text-2xl text-muted-foreground font-light mb-8 font-mono">
-              AI Engineer • Data Engineer • Co-Founder
+              Technical Head • AI-ML Engineer • Web Developer
             </h2>
             
             <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed">
-              Building intelligent systems through automation, robust data pipelines, and cutting-edge AI architectures.
+              A dedicated technology professional specialising in web portal development, AI solutions, and scalable platforms. Currently leading tech at Rajsanyog.
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <a href={resumePdf} download="Resume_AnkitKapse.pdf">
-                <Button size="lg" className="rounded-full bg-primary text-background hover:bg-primary/90 font-bold px-8 shadow-[0_0_20px_rgba(0,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all">
+              <a href={resumePdf} download="RCOEM_Ankit_Kapse_Resume.pdf">
+                <Button 
+                  size="lg" 
+                  className="rounded-full bg-primary text-background hover:bg-primary/90 font-bold px-8 shadow-[0_0_20px_rgba(0,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all"
+                  data-testid="button-download-cv"
+                >
                   <Download className="mr-2 h-4 w-4" /> Download CV
                 </Button>
               </a>
@@ -156,6 +190,7 @@ export default function Home() {
                 size="lg" 
                 className="rounded-full border-white/20 hover:bg-white/10 text-white"
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                data-testid="button-view-projects"
               >
                 View Projects
               </Button>
@@ -177,6 +212,7 @@ export default function Home() {
                   src={profileImg} 
                   alt="Ankit Kapse" 
                   className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity hover:scale-105 duration-500" 
+                  data-testid="img-profile"
                 />
               </div>
               
@@ -217,12 +253,25 @@ export default function Home() {
           <div className="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
             
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light text-center">
-              I am a technology enthusiast obsessed with <span className="text-white font-medium">efficiency</span> and <span className="text-white font-medium">automation</span>. 
-              My journey is defined by bridging the gap between raw data and actionable intelligence. 
-              Whether it's training custom LLMs, architecting real-time data pipelines, or building autonomous agents, 
-              I build systems that don't just work—they <span className="text-primary font-medium">evolve</span>.
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light text-center mb-6">
+              I am a dedicated technology professional with a <span className="text-white font-medium">Bachelor of Technology in Information Technology</span> and extensive experience in 
+              web portal development and AI solutions. Currently serving as <span className="text-primary font-medium">Technical Head at Rajsanyog</span>, I specialise in creating scalable 
+              technology platforms for political campaigns while managing home-grown management and AI integration skills.
             </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {[
+                { label: "Location", value: "Nagpur, India" },
+                { label: "Degree", value: "B.Tech IT" },
+                { label: "College", value: "RCOEM" },
+                { label: "Graduation", value: "May 2027" }
+              ].map((item) => (
+                <div key={item.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/5">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{item.label}</p>
+                  <p className="text-white font-medium text-sm">{item.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -241,22 +290,33 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}
                 className="relative pl-8 md:pl-12"
+                data-testid={`card-experience-${idx}`}
               >
                 <div className="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,255,255,0.8)]" />
                 
                 <div className="glass-panel p-6 rounded-xl hover:border-primary/30 transition-colors group">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
                     <h3 className="text-xl font-display font-bold text-white group-hover:text-primary transition-colors">
                       {exp.role}
                     </h3>
-                    <span className="text-sm font-mono text-muted-foreground bg-white/5 px-3 py-1 rounded-full border border-white/5">
+                    <span className="text-sm font-mono text-muted-foreground bg-white/5 px-3 py-1 rounded-full border border-white/5 self-start md:self-auto">
                       {exp.date}
                     </span>
                   </div>
-                  <h4 className="text-lg text-secondary font-medium mb-4">{exp.company}</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {exp.desc}
-                  </p>
+                  <div className="flex items-center gap-2 mb-4">
+                    <h4 className="text-lg text-secondary font-medium">{exp.company}</h4>
+                    <span className="text-xs text-muted-foreground flex items-center gap-1">
+                      <MapPin size={12} /> {exp.location}
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {exp.points.map((point, pIdx) => (
+                      <li key={pIdx} className="text-muted-foreground leading-relaxed text-sm flex gap-2">
+                        <span className="text-primary mt-1 shrink-0">▸</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             ))}
@@ -269,7 +329,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <SectionHeading title="Selected Works" subtitle="Portfolio" />
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {projects.map((project, idx) => (
               <ProjectCard 
                 key={idx}
@@ -299,6 +359,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 className="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors text-center group"
+                data-testid={`card-skill-${idx}`}
               >
                 <div className="w-12 h-12 mx-auto bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
                   {skill.icon}
@@ -311,6 +372,57 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Soft Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 glass-panel p-6 rounded-2xl text-center"
+          >
+            <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-mono">Soft Skills</h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {["Adaptability", "Decision-Making", "Rhetorical Skills", "Networking"].map((s) => (
+                <span key={s} className="px-4 py-1.5 rounded-full border border-secondary/30 text-secondary text-sm font-mono bg-secondary/5">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section id="certifications" className="py-20 bg-black/20 relative z-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <SectionHeading title="Certifications" subtitle="Achievements" />
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {certifications.map((cert, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="glass-panel p-6 rounded-2xl hover:border-primary/30 transition-all group"
+                data-testid={`card-certification-${idx}`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 shrink-0 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                    <Award size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold font-display text-lg group-hover:text-primary transition-colors">
+                      {cert.title}
+                    </h3>
+                    <p className="text-secondary text-sm font-mono mb-3">{cert.issuer}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{cert.desc}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -333,7 +445,7 @@ export default function Home() {
               <div className="glass-panel p-8 rounded-3xl h-full">
                 <h3 className="text-2xl font-display font-bold mb-6 text-white">Contact Information</h3>
                 <p className="text-muted-foreground mb-8">
-                  I'm always interested in hearing about new projects and opportunities in AI and Data Engineering.
+                  I'm always open to hearing about new projects, opportunities, and collaborations in AI, data, and web development.
                 </p>
                 
                 <div className="space-y-6">
@@ -343,7 +455,13 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
-                      <a href="mailto:ankitkapse594@gmail.com" className="text-white hover:text-primary transition-colors">ankitkapse594@gmail.com</a>
+                      <a 
+                        href="mailto:ankitkapse594@gmail.com" 
+                        className="text-white hover:text-primary transition-colors"
+                        data-testid="link-email"
+                      >
+                        ankitkapse594@gmail.com
+                      </a>
                     </div>
                   </div>
                   
@@ -353,7 +471,13 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Phone</p>
-                      <a href="tel:+917499039470" className="text-white hover:text-primary transition-colors">+91 7499039470</a>
+                      <a 
+                        href="tel:+917499039470" 
+                        className="text-white hover:text-primary transition-colors"
+                        data-testid="link-phone"
+                      >
+                        +91 7499039470
+                      </a>
                     </div>
                   </div>
                   
@@ -363,24 +487,24 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
-                      <p className="text-white">Nagpur, India</p>
+                      <p className="text-white" data-testid="text-location">Nagpur, India</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-12">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">Social Profiles</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">Profiles</p>
                   <div className="flex gap-4">
                     {[
-                      { icon: <Linkedin size={20} />, href: "https://linkedin.com" },
-                      { icon: <Github size={20} />, href: "https://github.com/AnkitKapse" },
-                      { icon: <Twitter size={20} />, href: "#" }
-                    ].map((social, i) => (
+                      { icon: <Linkedin size={20} />, href: "https://linkedin.com", label: "LinkedIn" },
+                      { icon: <Github size={20} />, href: "https://github.com/AnkitKapse", label: "GitHub" },
+                    ].map((social) => (
                       <a 
-                        key={i} 
+                        key={social.label}
                         href={social.href} 
                         target="_blank" 
                         rel="noreferrer"
+                        data-testid={`link-${social.label.toLowerCase()}`}
                         className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
                       >
                         {social.icon}
@@ -412,6 +536,7 @@ export default function Home() {
                             <Input 
                               placeholder="Your Name" 
                               {...field} 
+                              data-testid="input-name"
                               className="bg-black/40 border-white/10 focus:border-primary/50 rounded-xl py-6"
                             />
                           </FormControl>
@@ -430,6 +555,7 @@ export default function Home() {
                             <Input 
                               placeholder="your@email.com" 
                               {...field} 
+                              data-testid="input-email"
                               className="bg-black/40 border-white/10 focus:border-primary/50 rounded-xl py-6"
                             />
                           </FormControl>
@@ -448,6 +574,7 @@ export default function Home() {
                             <Textarea 
                               placeholder="Tell me about your project..." 
                               {...field} 
+                              data-testid="input-message"
                               className="min-h-[150px] bg-black/40 border-white/10 focus:border-primary/50 rounded-xl resize-none"
                             />
                           </FormControl>
@@ -456,10 +583,17 @@ export default function Home() {
                       )}
                     />
 
+                    {contactMutation.isSuccess && (
+                      <p className="text-green-400 text-sm font-mono" data-testid="status-success">
+                        ✓ Message sent successfully! I'll get back to you soon.
+                      </p>
+                    )}
+
                     <Button 
                       type="submit" 
                       className="w-full bg-gradient-to-r from-primary to-primary/80 hover:to-primary text-black font-bold py-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
                       disabled={contactMutation.isPending}
+                      data-testid="button-submit"
                     >
                       {contactMutation.isPending ? "Sending..." : "Send Message"}
                     </Button>
@@ -475,7 +609,7 @@ export default function Home() {
       <footer className="py-8 border-t border-white/5 bg-black">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground font-mono text-sm">
-            © {new Date().getFullYear()} Ankit Kapse. Engineered with <span className="text-primary">Intelligence</span>.
+            © {new Date().getFullYear()} Ankit Kapse — B.Tech IT, RCOEM. Engineered with <span className="text-primary">Intelligence</span>.
           </p>
         </div>
       </footer>
