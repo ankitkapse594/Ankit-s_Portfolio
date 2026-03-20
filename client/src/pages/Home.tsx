@@ -28,6 +28,7 @@ import { insertMessageSchema, type InsertMessage } from "@shared/routes";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
 import resumePdf from "@assets/RCOEM_ankit_kapse_resume_1774020852451.pdf";
+import { FloatingGeometry } from "@/components/FloatingGeometry";
 
 export default function Home() {
   const contactMutation = useSubmitContact();
@@ -138,6 +139,9 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center pt-20 z-10 overflow-hidden">
+        {/* 3D Floating Geometry */}
+        <FloatingGeometry />
+
         {/* Animated Orbs */}
         <motion.div 
           animate={{ x: [0, 50, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
@@ -223,15 +227,25 @@ export default function Home() {
           </motion.div>
           
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.8, rotateY: 30 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="order-1 lg:order-2 flex justify-center relative"
+            style={{ perspective: 800 }}
           >
             <div className="relative w-72 h-72 md:w-96 md:h-96">
+              {/* Outer spinning rings */}
               <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-[spin_10s_linear_infinite]" />
               <div className="absolute inset-4 rounded-full border border-white/10 animate-[spin_15s_linear_infinite_reverse]" />
-              
+              {/* Extra 3D orbit */}
+              <motion.div
+                animate={{ rotateX: [0, 360] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="absolute inset-8 rounded-full border border-secondary/20"
+              />
+
+              {/* Profile photo */}
               <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-white/5 shadow-2xl bg-black">
                 <img 
                   src={profileImg} 
@@ -239,22 +253,37 @@ export default function Home() {
                   className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity hover:scale-105 duration-500" 
                   data-testid="img-profile"
                 />
+                {/* Scanner line */}
+                <motion.div
+                  animate={{ top: ["0%", "100%", "0%"] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
+                  className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/70 to-transparent"
+                  style={{ boxShadow: "0 0 12px rgba(0,255,255,0.6)" }}
+                />
               </div>
               
               {/* Floating tech badges */}
               <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 glass-panel p-3 rounded-xl border border-primary/30"
+                animate={{ y: [0, -12, 0], rotateZ: [0, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 -right-4 glass-panel p-3 rounded-xl border border-primary/40 shadow-[0_0_15px_rgba(0,255,255,0.2)]"
               >
                 <Bot className="text-primary w-6 h-6" />
               </motion.div>
               <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-4 -left-4 glass-panel p-3 rounded-xl border border-secondary/30"
+                animate={{ y: [0, 12, 0], rotateZ: [0, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 -left-4 glass-panel p-3 rounded-xl border border-secondary/40 shadow-[0_0_15px_rgba(157,78,221,0.2)]"
               >
                 <Database className="text-secondary w-6 h-6" />
+              </motion.div>
+              {/* Third badge */}
+              <motion.div 
+                animate={{ x: [0, 10, 0], y: [0, -6, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-4 -right-4 glass-panel p-3 rounded-xl border border-accent/30 shadow-[0_0_15px_rgba(255,26,140,0.2)]"
+              >
+                <Cpu className="text-accent w-6 h-6" />
               </motion.div>
             </div>
           </motion.div>
@@ -375,21 +404,27 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeading title="Tech Stack" subtitle="Capabilities" />
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" style={{ perspective: 1000 }}>
             {skills.map((skill, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, rotateX: 40, y: 40 }}
+                whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors text-center group"
+                transition={{ delay: idx * 0.12, duration: 0.7, ease: "easeOut" }}
+                whileHover={{ scale: 1.05, rotateY: 5, z: 30 }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="glass-panel p-6 rounded-2xl hover:bg-white/5 hover:border-primary/20 hover:shadow-[0_0_25px_rgba(0,255,255,0.1)] transition-all text-center group cursor-default"
                 data-testid={`card-skill-${idx}`}
               >
-                <div className="w-12 h-12 mx-auto bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                <motion.div
+                  whileHover={{ rotateY: 360 }}
+                  transition={{ duration: 0.7 }}
+                  className="w-12 h-12 mx-auto bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary/20 group-hover:shadow-[0_0_15px_rgba(0,255,255,0.2)] transition-all"
+                >
                   {skill.icon}
-                </div>
-                <h3 className="text-lg font-bold font-display mb-4 text-white">{skill.category}</h3>
+                </motion.div>
+                <h3 className="text-lg font-bold font-display mb-4 text-white group-hover:text-primary transition-colors">{skill.category}</h3>
                 <ul className="space-y-2">
                   {skill.items.map((item) => (
                     <li key={item} className="text-sm text-muted-foreground font-mono">
@@ -425,15 +460,17 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeading title="Certifications" subtitle="Achievements" />
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6" style={{ perspective: 1200 }}>
             {certifications.map((cert, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, rotateY: -25, x: -30 }}
+                whileInView={{ opacity: 1, rotateY: 0, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass-panel p-6 rounded-2xl hover:border-primary/30 transition-all group"
+                transition={{ delay: idx * 0.12, duration: 0.65, ease: "easeOut" }}
+                whileHover={{ scale: 1.03, rotateY: 3, z: 20 }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="glass-panel p-6 rounded-2xl hover:border-primary/30 hover:shadow-[0_0_20px_rgba(0,255,255,0.08)] transition-all group cursor-default"
                 data-testid={`card-certification-${idx}`}
               >
                 <div className="flex items-start gap-4">
