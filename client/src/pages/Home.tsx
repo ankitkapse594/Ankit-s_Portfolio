@@ -29,10 +29,16 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
 import resumePdf from "@assets/RCOEM_ankit_kapse_resume_1774020852451.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
+import { ParticleCanvas } from "@/components/ParticleCanvas";
+import { CustomCursor } from "@/components/CustomCursor";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { TypedSubtitle } from "@/components/TypedSubtitle";
+import { useScramble } from "@/hooks/use-scramble";
 
 export default function Home() {
   const contactMutation = useSubmitContact();
-  
+  const scrambledName = useScramble("Ankit Kapse", 600, 30);
+
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
     defaultValues: {
@@ -131,6 +137,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30">
+      {/* Global overlays */}
+      <CustomCursor />
+      <ScrollProgress />
+      <ParticleCanvas />
+
       <Navigation />
       
       {/* Background Grid */}
@@ -167,13 +178,13 @@ export default function Home() {
             
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-4 leading-tight">
               Hello, I'm <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary animate-gradient-x">
-                Ankit Kapse
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary animate-gradient-x font-mono">
+                {scrambledName}
               </span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-muted-foreground font-light mb-8 font-mono">
-              Technical Head • AI-ML Engineer • Web Developer • Data Engineer
+            <h2 className="text-xl md:text-2xl text-muted-foreground font-light mb-8 font-mono h-8">
+              <TypedSubtitle />
             </h2>
             
             <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed">

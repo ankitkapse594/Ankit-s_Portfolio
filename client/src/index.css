@@ -84,6 +84,41 @@
   }
 }
 
+/* Hide default cursor globally for custom cursor */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* Blink animation for typed cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Animated gradient border */
+@keyframes border-glow {
+  0%   { border-color: rgba(0,255,255,0.3); box-shadow: 0 0 12px rgba(0,255,255,0.1); }
+  33%  { border-color: rgba(157,78,221,0.3); box-shadow: 0 0 12px rgba(157,78,221,0.1); }
+  66%  { border-color: rgba(255,26,140,0.3); box-shadow: 0 0 12px rgba(255,26,140,0.1); }
+  100% { border-color: rgba(0,255,255,0.3); box-shadow: 0 0 12px rgba(0,255,255,0.1); }
+}
+
+.animated-border {
+  animation: border-glow 4s linear infinite;
+}
+
+/* Gradient text animation */
+@keyframes gradient-x {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 4s ease infinite;
+}
+
 /* Background Grid Animation */
 .bg-grid {
   background-size: 50px 50px;
