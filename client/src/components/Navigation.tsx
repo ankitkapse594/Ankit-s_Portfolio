@@ -48,7 +48,7 @@ export function Navigation() {
           onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }}
           className="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
         >
-          ANKIT<span className="text-white">.AI</span>
+          ANKIT<span className="text-white">'S PORTFOLIO</span>
         </a>
 
         {/* Desktop Nav */}
