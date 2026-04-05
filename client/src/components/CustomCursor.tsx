@@ -6,11 +6,20 @@ export function CustomCursor() {
   const cursorY = useMotionValue(-200);
   const [isPointer, setIsPointer] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
+  // All hooks must be called before any early return
   const trailX = useSpring(cursorX, { stiffness: 70, damping: 18, mass: 0.5 });
   const trailY = useSpring(cursorY, { stiffness: 70, damping: 18, mass: 0.5 });
 
   useEffect(() => {
+    // Detect touch/mobile after mount
+    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
+
     const onMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -34,7 +43,10 @@ export function CustomCursor() {
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isTouch]);
+
+  // Don't render the cursor UI on touch/mobile — the cursor is meaningless there
+  if (isTouch) return null;
 
   return (
     <>

@@ -84,9 +84,11 @@
   }
 }
 
-/* Hide default cursor globally for custom cursor */
-*, *::before, *::after {
-  cursor: none !important;
+/* Hide default cursor only on real pointer devices (not touch/mobile) */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 /* Blink animation for typed cursor */
