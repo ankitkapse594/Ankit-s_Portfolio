@@ -704,11 +704,108 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-white/5 bg-black">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground font-mono text-sm">
-            © {new Date().getFullYear()} Ankit Kapse — B.Tech IT, RCOEM. Engineered with <span className="text-primary">Intelligence</span>.
-          </p>
+      <footer className="relative border-t border-white/5 bg-black/90 backdrop-blur-md z-10">
+        {/* Glow accent line */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+
+        <div className="container mx-auto px-4 py-14 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            {/* Brand column */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                ANKIT'S PORTFOLIO
+              </h2>
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                Technical Head · AI-ML Engineer · Web Developer · Data Engineer. Building intelligent systems from Nagpur, India.
+              </p>
+              {/* Social icons */}
+              <div className="flex gap-3 pt-2">
+                {[
+                  { icon: <Linkedin size={17} />, href: "https://www.linkedin.com/in/ankit-kapse-ak02", label: "LinkedIn" },
+                  { icon: <Github size={17} />, href: "https://github.com/ankitkapse594", label: "GitHub" },
+                  { icon: <Code2 size={17} />, href: "https://codolio.com/profile/ankit_kapse", label: "Codolio" },
+                  { icon: <Mail size={17} />, href: "mailto:ankitkapse594@gmail.com", label: "Email" },
+                ].map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                    rel="noreferrer"
+                    title={s.label}
+                    className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary hover:bg-primary/5 hover:shadow-[0_0_8px_rgba(0,255,255,0.3)] transition-all"
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick links column */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Quick Links</h3>
+              <ul className="space-y-2">
+                {[
+                  { label: "About",          href: "#about" },
+                  { label: "Experience",     href: "#experience" },
+                  { label: "Projects",       href: "#projects" },
+                  { label: "Skills",         href: "#skills" },
+                  { label: "Certifications", href: "#certifications" },
+                  { label: "Contact",        href: "#contact" },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <button
+                      onClick={() => document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" })}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono flex items-center gap-2 group"
+                    >
+                      <span className="text-primary/40 group-hover:text-primary transition-colors">▸</span>
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact column */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Contact</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="mailto:ankitkapse594@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors group">
+                    <Mail size={14} className="text-primary shrink-0" />
+                    ankitkapse594@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+917499039470" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Phone size={14} className="text-primary shrink-0" />
+                    +91 7499039470
+                  </a>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <MapPin size={14} className="text-primary shrink-0" />
+                  Nagpur, Maharashtra, India
+                </li>
+              </ul>
+
+              <div className="pt-2">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-3">Education</h3>
+                <p className="text-sm text-muted-foreground">B.Tech Information Technology</p>
+                <p className="text-xs text-primary/70 font-mono mt-0.5">RCOEM, Nagpur · 2023 – 2027</p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom bar */}
+          <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-xs text-muted-foreground font-mono">
+              © {new Date().getFullYear()} Ankit Kapse. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground font-mono">
+              Built with <span className="text-primary">React</span> · <span className="text-secondary">Framer Motion</span> · <span className="text-accent">Tailwind CSS</span>
+            </p>
+          </div>
         </div>
       </footer>
     </div>
