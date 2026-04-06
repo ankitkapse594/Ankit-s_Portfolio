@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, NextFunction, Request, Response } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
@@ -8,21 +8,24 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  app.post(api.contact.submit.path, async (req, res) => {
-    try {
-      const input = api.contact.submit.input.parse(req.body);
-      const message = await storage.createContactMessage(input);
-      res.status(201).json(message);
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        return res.status(400).json({
-          message: err.errors[0].message,
-          field: err.errors[0].path.join('.'),
-        });
+  app.post(
+    api.contact.submit.path,
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const input = api.contact.submit.input.parse(req.body);
+        const message = await storage.createContactMessage(input);
+        res.status(201).json(message);
+      } catch (err) {
+        if (err instanceof z.ZodError) {
+          return res.status(400).json({
+            message: err.errors[0].message,
+            field: err.errors[0].path.join("."),
+          });
+        }
+        next(err);
       }
-      throw err;
     }
-  });
+  );
 
   return httpServer;
 }

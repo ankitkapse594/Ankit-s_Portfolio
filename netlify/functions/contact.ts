@@ -1,3 +1,4 @@
+import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import { insertMessageSchema } from "../../shared/schema";
 
@@ -7,8 +8,6 @@ const HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
-
-const CONTACT_EMAIL = "ankitkapse594@gmail.com";
 
 export const handler = async (event: {
   httpMethod: string;
@@ -26,60 +25,39 @@ export const handler = async (event: {
     };
   }
 
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return {
+      statusCode: 500,
+      headers: HEADERS,
+      body: JSON.stringify({ message: "Supabase not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY in Netlify environment variables." }),
+    };
+  }
+
   try {
     const body = JSON.parse(event.body || "{}");
     const parsed = insertMessageSchema.parse(body);
 
-    // If a database is configured (e.g. production with DB), store there
-    if (process.env.DATABASE_URL) {
-      const { Pool } = await import("pg");
-      const { drizzle } = await import("drizzle-orm/node-postgres");
-      const { messages } = await import("../../shared/schema");
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
-      const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-      const db = drizzle(pool);
-      const [message] = await db.insert(messages).values(parsed).returning();
-      await pool.end();
+    const { data, error } = await supabase
+      .from("messages")
+      .insert({
+        name: parsed.name,
+        email: parsed.email,
+        message: parsed.message,
+      })
+      .select()
+      .single();
 
-      return {
-        statusCode: 201,
-        headers: HEADERS,
-        body: JSON.stringify(message),
-      };
-    }
-
-    // No database — forward to FormSubmit.co which emails Ankit directly
-    const emailRes = await fetch(
-      `https://formsubmit.co/ajax/${CONTACT_EMAIL}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: parsed.name,
-          email: parsed.email,
-          message: parsed.message,
-          _subject: `Portfolio Contact from ${parsed.name}`,
-          _replyto: parsed.email,
-          _captcha: "false",
-        }),
-      }
-    );
-
-    if (!emailRes.ok) {
-      throw new Error(`FormSubmit error: ${emailRes.status}`);
-    }
+    if (error) throw new Error(error.message);
 
     return {
       statusCode: 201,
       headers: HEADERS,
-      body: JSON.stringify({
-        name: parsed.name,
-        email: parsed.email,
-        message: parsed.message,
-      }),
+      body: JSON.stringify(data),
     };
   } catch (err) {
     if (err instanceof z.ZodError) {
@@ -96,7 +74,7 @@ export const handler = async (event: {
     return {
       statusCode: 500,
       headers: HEADERS,
-      body: JSON.stringify({ message: "Internal server error. Please try again." }),
+      body: JSON.stringify({ message: (err as Error).message || "Internal server error." }),
     };
   }
 };

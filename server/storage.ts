@@ -1,19 +1,25 @@
-import { type Message, type InsertMessage, messages } from "@shared/schema";
-import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { type Message, type InsertMessage } from "@shared/schema";
+import { supabase } from "./supabase";
 
 export interface IStorage {
   createContactMessage(message: InsertMessage): Promise<Message>;
 }
 
-export class DatabaseStorage implements IStorage {
+export class SupabaseStorage implements IStorage {
   async createContactMessage(insertMessage: InsertMessage): Promise<Message> {
-    const [message] = await db
-      .insert(messages)
-      .values(insertMessage)
-      .returning();
-    return message;
+    const { data, error } = await supabase
+      .from("messages")
+      .insert({
+        name: insertMessage.name,
+        email: insertMessage.email,
+        message: insertMessage.message,
+      })
+      .select()
+      .single();
+
+    if (error) throw new Error(error.message);
+    return data as Message;
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = new SupabaseStorage();
