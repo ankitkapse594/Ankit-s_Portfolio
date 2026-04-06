@@ -30,46 +30,34 @@ export const handler = async (event: {
     const body = JSON.parse(event.body || "{}");
     const parsed = insertMessageSchema.parse(body);
 
-    // If a database is configured, store there
-    if (process.env.DATABASE_URL) {
-      const { Pool } = await import("pg");
-      const { drizzle } = await import("drizzle-orm/node-postgres");
-      const { messages } = await import("../../shared/schema");
+    // Forward to FormSubmit.co — sends an email to CONTACT_EMAIL
+    // NOTE: First submission triggers an activation email to CONTACT_EMAIL.
+    // Click the link in that email once, then all future submissions will arrive normally.
+    try {
+      const emailRes = await fetch(
+        `https://formsubmit.co/ajax/${CONTACT_EMAIL}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: parsed.name,
+            email: parsed.email,
+            message: parsed.message,
+            _subject: `Portfolio Contact from ${parsed.name}`,
+            _replyto: parsed.email,
+            _captcha: "false",
+          }),
+        }
+      );
 
-      const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-      const db = drizzle(pool);
-      const [message] = await db.insert(messages).values(parsed).returning();
-      await pool.end();
-
-      return {
-        statusCode: 201,
-        headers: HEADERS,
-        body: JSON.stringify(message),
-      };
-    }
-
-    // No database — forward to FormSubmit.co which emails Ankit directly
-    const emailRes = await fetch(
-      `https://formsubmit.co/ajax/${CONTACT_EMAIL}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: parsed.name,
-          email: parsed.email,
-          message: parsed.message,
-          _subject: `Portfolio Contact from ${parsed.name}`,
-          _replyto: parsed.email,
-          _captcha: "false",
-        }),
-      }
-    );
-
-    if (!emailRes.ok) {
-      throw new Error(`Email service error: ${emailRes.status}`);
+      const result = await emailRes.json().catch(() => ({}));
+      console.log("FormSubmit response:", emailRes.status, result);
+    } catch (emailErr) {
+      // Log but don't fail — visitor should not see an error for email delivery issues
+      console.error("FormSubmit error (non-fatal):", emailErr);
     }
 
     return {
@@ -96,7 +84,7 @@ export const handler = async (event: {
     return {
       statusCode: 500,
       headers: HEADERS,
-      body: JSON.stringify({ message: "Internal server error. Please try again." }),
+      body: JSON.stringify({ message: "Something went wrong. Please email me directly at ankitkapse594@gmail.com" }),
     };
   }
 };
