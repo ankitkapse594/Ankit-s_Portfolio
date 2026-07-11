@@ -27,7 +27,7 @@ import { useForm } from "react-hook-form";
 import { insertMessageSchema, type InsertMessage } from "@shared/routes";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
-import resumePdf from "@assets/RCOEM_ankit_kapse_resume_1774020852451.pdf";
+import resumePdf from "@assets/Ankit_Kapse_Resume_final_1783792419523.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { ParticleCanvas } from "@/components/ParticleCanvas";
 import { CustomCursor } from "@/components/CustomCursor";
@@ -61,9 +61,9 @@ export default function Home() {
       date: "Jun 2025 – Present",
       location: "Nagpur",
       points: [
-        "End-to-end web portal development and digital consulting to support political campaigns and organizational needs.",
-        "Implement AI agents and automated tech solutions, including scalable platforms and custom digital tools.",
-        "Startup-focused tech solutions, including scalable platforms and custom digital tools."
+        "Lead end-to-end web portal development and digital consulting for political campaigns and organizational clients, owning delivery from architecture to deployment.",
+        "Design and implement AI agents and automated tech solutions, building scalable platforms and custom digital tools used in live campaigns.",
+        "Deliver startup-focused technology solutions, translating client requirements into scalable products and custom digital tools."
       ]
     },
     {
@@ -72,9 +72,9 @@ export default function Home() {
       date: "May 2025 – Aug 2025",
       location: "Remote",
       points: [
-        "Completed training in cloud-based data handling and pipeline development.",
-        "Applied data modelling and database management concepts.",
-        "Utilized tools for data cleaning, transformation, and visualization."
+        "Completed structured training in cloud-based data handling and end-to-end pipeline development.",
+        "Applied data modelling and database management concepts to real-world datasets.",
+        "Used industry-standard tools for data cleaning, transformation, and visualization."
       ]
     },
     {
@@ -83,8 +83,8 @@ export default function Home() {
       date: "Jul 2024 – Sep 2024",
       location: "Remote",
       points: [
-        "Gained practical experience with Python AI frameworks for algorithm implementation.",
-        "Integrated data analysis, predictive modelling, and feature engineering in projects.",
+        "Gained hands-on experience with Python AI frameworks for algorithm implementation.",
+        "Integrated data analysis and predictive modelling techniques into project workflows.",
         "Learned deployment and optimization of AI models in real-world systems."
       ]
     }
@@ -92,46 +92,46 @@ export default function Home() {
 
   const projects = [
     {
-      title: "Animal Diseases Detection System",
-      desc: "Built a deep learning model (ResNet50) to detect animal diseases from microscopic images. Developed an end-to-end pipeline with OpenCV preprocessing and real-time prediction. Generated automated reports with disease name, symptoms, and treatment suggestions.",
-      tags: ["Python", "ResNet50", "OpenCV", "Deep Learning"],
-      date: "Jul 2025 – Nov 2025"
+      title: "VRAMP – Virtual RAM Management Platform",
+      desc: "Developed a cloud-based virtual RAM system to extend smartphone memory and improve performance. Implemented compression and edge serialization enabling 10x connectivity with sub-250ms latency. Improved device performance, reducing app crashes and enabling smoother gaming without hardware upgrades.",
+      tags: ["Node.js", "Docker", "Kubernetes", "Edge Serialization", "Cloud"],
+      date: "Feb 2026 – Present"
     },
     {
-      title: "VRAM – Virtual RAM Management Platform",
-      desc: "Developed a cloud-based virtual RAM system to extend smartphone memory and improve processing performance. Built a Node.js backend to offload app states to cloud containers. Implemented compression and edge serialization to enable 10x connectivity with low latency.",
-      tags: ["Node.js", "Cloud Computing", "Edge Serialization", "Performance"],
-      date: "Feb 2025 – Present"
+      title: "Animal Diseases Detection System",
+      desc: "Built a deep-learning model (ResNet50) to detect animal diseases from microscopic images. Developed an end-to-end pipeline with OpenCV preprocessing for fast, accurate prediction. Generated automated reports covering disease name, symptoms, and treatment suggestions. Created a simple web interface enabling fast veterinary diagnosis.",
+      tags: ["Python", "ResNet50", "OpenCV", "Deep Learning"],
+      date: "Jul 2025 – Nov 2025"
     }
   ];
 
   const skills = [
-    { icon: <Bot size={24} />, category: "AI & Automation", items: ["AI Automation", "Deep Learning", "Machine Learning", "Computer Vision", "AI Agents"] },
-    { icon: <Database size={24} />, category: "Data & Cloud", items: ["AWS", "Data Analysis", "SQL", "Data Engineering", "Pipeline Dev"] },
-    { icon: <Globe size={24} />, category: "Web Development", items: ["Web Portals", "React", "Node.js", "REST APIs", "Full-Stack"] },
-    { icon: <Cpu size={24} />, category: "Programming", items: ["Python", "JavaScript", "TypeScript", "Data Processing", "Automation"] }
+    { icon: <Bot size={24} />, category: "Cloud & AI", items: ["AWS", "AI Automation", "Machine Learning", "Deep Learning", "ResNet50 / OpenCV"] },
+    { icon: <Database size={24} />, category: "Programming & Data", items: ["Python", "SQL", "Data Analysis", "Power BI", "Tableau"] },
+    { icon: <Globe size={24} />, category: "Web Development", items: ["Node.js", "Web Portal Dev", "React", "REST APIs", "Full-Stack"] },
+    { icon: <Cpu size={24} />, category: "Infrastructure", items: ["Docker", "Kubernetes", "Cloud Computing", "Edge Computing", "Virtualization"] }
   ];
 
   const certifications = [
     {
-      title: "AWS – Data Engineering",
+      title: "AWS — Data Engineering",
       issuer: "Amazon Web Services",
-      desc: "Comprehensive AWS Data Engineering and Cloud Practitioners courses, gaining hands-on experience with core AWS services."
+      desc: "Hands-on coursework across core AWS Data Engineering and Cloud Practitioner services."
     },
     {
-      title: "Google Data Analytics",
+      title: "Google Data Analytics Professional Certificate",
       issuer: "Google / Coursera",
-      desc: "Google Data Analytics Professional Certificate — insights with SQL, spreadsheets, Tableau, and R for data-driven decision-making."
+      desc: "SQL, spreadsheets, Tableau, and R for data-driven decisions."
     },
     {
       title: "Programming in Python",
       issuer: "Coursera",
-      desc: "Proficient in Python programming for data processing, automation, and application development."
+      desc: "Python for data processing, automation, and application development."
     },
     {
       title: "Software Engineering Job Simulation",
       issuer: "JPMorgan Chase & Co. / Forage",
-      desc: "Processed real-time market data, built and tested features, created interactive visual dashboards for traders, and completed an open-source contribution."
+      desc: "Real-time market data processing, interactive dashboards, and an open-source contribution."
     }
   ];
 
@@ -188,11 +188,11 @@ export default function Home() {
             </h2>
             
             <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed">
-              A dedicated technology professional specialising in web portal development, AI solutions, and scalable platforms. Currently leading tech at Rajsanyog.
+              I don't just write code — I build systems that scale, ship, and solve real problems. Technical Head with end-to-end experience in web platforms, AI/ML, and Cloud Computing & Virtualization, including a Docker/Kubernetes based Virtual RAM platform with sub-250ms latency.
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <a href={resumePdf} download="RCOEM_Ankit_Kapse_Resume.pdf">
+              <a href={resumePdf} download="Ankit_Kapse_Resume.pdf">
                 <Button 
                   size="lg" 
                   className="rounded-full bg-primary text-background hover:bg-primary/90 font-bold px-8 shadow-[0_0_20px_rgba(0,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all"
@@ -319,9 +319,7 @@ export default function Home() {
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
             
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light text-center mb-6">
-              I am a dedicated technology professional with a <span className="text-white font-medium">Bachelor of Technology in Information Technology</span> and extensive experience in 
-              web portal development and AI solutions. Currently serving as <span className="text-primary font-medium">Technical Head at Rajsanyog</span>, I specialise in creating scalable 
-              technology platforms for political campaigns while managing home-grown management and AI integration skills.
+              I don't just write code — I build systems that <span className="text-white font-medium">scale, ship, and solve real problems</span>. Currently serving as <span className="text-primary font-medium">Technical Head at Rajsanyog</span>, I bring end-to-end experience in web platforms, AI/ML, and Cloud Computing & Virtualization. Skilled in <span className="text-white font-medium">Python, AWS, and full-stack development</span>, with proven leadership delivering cloud-based systems for real-world, client-facing projects.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
@@ -329,7 +327,7 @@ export default function Home() {
                 { label: "Location", value: "Nagpur, India" },
                 { label: "Degree", value: "B.Tech IT" },
                 { label: "College", value: "RCOEM" },
-                { label: "Graduation", value: "May 2027" }
+                { label: "CGPA", value: "7.5" }
               ].map((item) => (
                 <div key={item.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/5">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{item.label}</p>
@@ -456,7 +454,7 @@ export default function Home() {
           >
             <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-mono">Soft Skills</h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {["Adaptability", "Decision-Making", "Rhetorical Skills", "Networking"].map((s) => (
+              {["Adaptability", "Decision-Making", "Rhetorical Communication", "Networking"].map((s) => (
                 <span key={s} className="px-4 py-1.5 rounded-full border border-secondary/30 text-secondary text-sm font-mono bg-secondary/5">
                   {s}
                 </span>
