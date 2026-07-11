@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { 
   Download, 
   ChevronDown, 
@@ -29,7 +30,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
 import resumePdf from "@assets/Ankit_Kapse_Resume_final_1783792419523.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
-import { ParticleCanvas } from "@/components/ParticleCanvas";
+import { UnderwaterScene } from "@/components/UnderwaterScene";
+import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { TypedSubtitle } from "@/components/TypedSubtitle";
@@ -38,6 +40,7 @@ import { useScramble } from "@/hooks/use-scramble";
 export default function Home() {
   const contactMutation = useSubmitContact();
   const scrambledName = useScramble("Ankit Kapse", 600, 30);
+  const [activeProject, setActiveProject] = useState<ProjectData | null>(null);
 
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
@@ -140,7 +143,7 @@ export default function Home() {
       {/* Global overlays */}
       <CustomCursor />
       <ScrollProgress />
-      <ParticleCanvas />
+      <UnderwaterScene />
 
       <Navigation />
       
@@ -402,6 +405,12 @@ export default function Home() {
                 github="#"
                 link="#"
                 delay={idx * 0.1}
+                onClick={() => setActiveProject({
+                  title: project.title,
+                  description: project.desc,
+                  tags: project.tags,
+                  date: project.date,
+                })}
               />
             ))}
           </div>
@@ -806,6 +815,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Project Detail Modal */}
+      <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ExternalLink, Github, Code2 } from "lucide-react";
+import { ExternalLink, Github, Code2, Maximize2 } from "lucide-react";
 
 interface ProjectCardProps {
   title: string;
@@ -9,19 +9,21 @@ interface ProjectCardProps {
   link?: string;
   github?: string;
   delay?: number;
+  onClick?: () => void;
 }
 
-export function ProjectCard({ title, description, tags, link, github, delay = 0 }: ProjectCardProps) {
+export function ProjectCard({ title, description, tags, link, github, delay = 0, onClick }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   const springConfig = { stiffness: 150, damping: 20 };
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), springConfig);
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), springConfig);
-  const glowX = useSpring(useTransform(x, [-0.5, 0.5], [0, 100]), springConfig);
-  const glowY = useSpring(useTransform(y, [-0.5, 0.5], [0, 100]), springConfig);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [14, -14]), springConfig);
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-14, 14]), springConfig);
+  const glowX  = useSpring(useTransform(x, [-0.5, 0.5], [0, 100]), springConfig);
+  const glowY  = useSpring(useTransform(y, [-0.5, 0.5], [0, 100]), springConfig);
+  const scale  = useSpring(1, { stiffness: 200, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -30,10 +32,8 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0 
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  const handleMouseEnter = () => scale.set(1.03);
+  const handleMouseLeave = () => { x.set(0); y.set(0); scale.set(1); };
 
   return (
     <motion.div
@@ -47,28 +47,35 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0 
       <motion.div
         ref={ref}
         onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="relative h-full cursor-default"
+        onClick={onClick}
+        style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
+        className="relative h-full cursor-pointer"
+        data-testid={`card-project-${title.replace(/\s+/g, "-").toLowerCase()}`}
       >
         {/* Glow backing */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        {/* Glare shimmer that follows mouse */}
+        {/* Drop shadow glow */}
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{ boxShadow: "0 20px 60px -10px rgba(0,255,255,0.18), 0 0 0 1px rgba(0,255,255,0.1)" }} />
+
+        {/* Mouse glare */}
         <motion.div
           className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
             background: useTransform(
               [glowX, glowY],
               ([lx, ly]) =>
-                `radial-gradient(circle at ${lx}% ${ly}%, rgba(0,255,255,0.12) 0%, transparent 60%)`
+                `radial-gradient(circle at ${lx}% ${ly}%, rgba(0,255,255,0.13) 0%, transparent 60%)`
             ),
           }}
         />
 
         {/* Card face */}
         <div
-          className="relative h-full glass-panel rounded-2xl p-6 md:p-8 flex flex-col border-t border-white/10"
+          className="relative h-full glass-panel rounded-2xl p-6 md:p-8 flex flex-col border-t border-white/10 hover:border-primary/20 transition-colors"
           style={{ transform: "translateZ(0px)" }}
         >
           {/* Icon & links row */}
@@ -79,17 +86,33 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0 
             >
               <Code2 size={24} />
             </motion.div>
-            <div className="flex gap-3" style={{ transform: "translateZ(20px)" }}>
-              {github && (
-                <a href={github} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-white transition-colors">
-                  <Github size={20} />
+            <div className="flex gap-3 items-center" style={{ transform: "translateZ(20px)" }}>
+              {github && github !== "#" && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-muted-foreground hover:text-white transition-colors"
+                >
+                  <Github size={18} />
                 </a>
               )}
-              {link && (
-                <a href={link} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <ExternalLink size={20} />
+              {link && link !== "#" && (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink size={18} />
                 </a>
               )}
+              {/* Expand hint */}
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity text-primary/60">
+                <Maximize2 size={15} />
+              </div>
             </div>
           </div>
 
@@ -100,7 +123,7 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0 
             {title}
           </motion.h3>
 
-          <p className="text-muted-foreground mb-6 flex-grow leading-relaxed text-sm">
+          <p className="text-muted-foreground mb-6 flex-grow leading-relaxed text-sm line-clamp-4">
             {description}
           </p>
 
@@ -114,6 +137,11 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0 
               </span>
             ))}
           </div>
+
+          {/* Click hint */}
+          <p className="text-[10px] font-mono text-muted-foreground/40 mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+            click to explore →
+          </p>
         </div>
       </motion.div>
     </motion.div>
