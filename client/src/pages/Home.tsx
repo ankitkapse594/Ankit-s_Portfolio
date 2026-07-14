@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
 import { 
   Download, 
   ChevronDown, 
@@ -31,7 +31,7 @@ import resumePdf from "@assets/Ankit_Kapse_Resume_final_02_1784046625634.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { AIBackground } from "@/components/AIBackground";
 import { LoadingScreen } from "@/components/LoadingScreen";
-import { AIAvatar } from "@/components/AIAvatar";
+import { AICommandCenter } from "@/components/AICommandCenter";
 import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
@@ -43,6 +43,34 @@ export default function Home() {
   const scrambledName = useScramble("Ankit Kapse", 600, 30);
   const [activeProject, setActiveProject] = useState<ProjectData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRecruiterMode, setIsRecruiterMode] = useState(false);
+  const [eggToast, setEggToast] = useState<string | null>(null);
+
+  const showToast = useCallback((msg: string) => {
+    setEggToast(msg);
+    setTimeout(() => setEggToast(null), 2800);
+  }, []);
+
+  useEffect(() => {
+    const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+    const keys: string[] = [];
+    const handler = (e: KeyboardEvent) => {
+      if (e.shiftKey) {
+        if (e.key === "A") { showToast("🤖 AI MODE ACTIVATED — Full neural experience"); return; }
+        if (e.key === "G") { showToast("💻 DEVELOPER MODE — Stack: React · Express · PostgreSQL"); return; }
+        if (e.key === "T") { showToast("⌨️ TERMINAL MODE — Try the terminal in the command center"); return; }
+        if (e.key === "N") { showToast("🧠 NEURAL NETWORK VIEW — The background is alive"); return; }
+      }
+      keys.push(e.key);
+      if (keys.length > KONAMI.length) keys.shift();
+      if (keys.join(",") === KONAMI.join(",")) {
+        showToast("🔓 SECRET MODE UNLOCKED — You found the easter egg! You think like a developer.");
+        keys.length = 0;
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [showToast]);
 
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
@@ -246,7 +274,7 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="order-1 lg:order-2 flex justify-center relative"
           >
-            <AIAvatar />
+            <AICommandCenter />
           </motion.div>
         </div>
 
@@ -765,6 +793,103 @@ export default function Home() {
 
       {/* Project Detail Modal */}
       <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+
+      {/* Recruiter Mode Toggle */}
+      <motion.button
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 3.5 }}
+        onClick={() => setIsRecruiterMode(r => !r)}
+        data-testid="button-recruiter-mode"
+        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-3 py-2 rounded-xl font-mono text-[10px] tracking-widest uppercase transition-all select-none"
+        style={{
+          background: isRecruiterMode
+            ? "rgba(0,220,255,0.15)"
+            : "rgba(6,8,17,0.80)",
+          border: isRecruiterMode
+            ? "1px solid rgba(0,220,255,0.5)"
+            : "1px solid rgba(255,255,255,0.08)",
+          backdropFilter: "blur(12px)",
+          boxShadow: isRecruiterMode
+            ? "0 0 20px rgba(0,220,255,0.15)"
+            : "none",
+          color: isRecruiterMode ? "#00dcff" : "rgba(255,255,255,0.4)",
+        }}
+      >
+        <motion.div
+          animate={{ opacity: isRecruiterMode ? [0.6, 1, 0.6] : 1 }}
+          transition={{ duration: 1.5, repeat: isRecruiterMode ? Infinity : 0 }}
+          className="w-1.5 h-1.5 rounded-full"
+          style={{ background: isRecruiterMode ? "#00dcff" : "rgba(255,255,255,0.25)" }}
+        />
+        {isRecruiterMode ? "RECRUITER MODE ON" : "RECRUITER MODE"}
+      </motion.button>
+
+      {/* Recruiter Mode Overlay — highlights key sections */}
+      <AnimatePresence>
+        {isRecruiterMode && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.4 }}
+            className="fixed bottom-6 right-6 z-50 rounded-2xl p-4 font-mono"
+            style={{
+              background: "rgba(6,8,17,0.92)",
+              border: "1px solid rgba(0,220,255,0.25)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "0 0 40px rgba(0,220,255,0.08)",
+              maxWidth: "220px",
+            }}
+          >
+            <p className="text-[9px] tracking-[0.2em] text-primary/60 uppercase mb-3">Quick View</p>
+            {[
+              { label: "Role", value: "AI & Data Engineer" },
+              { label: "Location", value: "Nagpur, India" },
+              { label: "Available", value: "Open to Opportunities" },
+              { label: "Experience", value: "3 Internships" },
+              { label: "Education", value: "B.Tech IT — RCOEM" },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex justify-between gap-4 mb-1.5">
+                <span className="text-[10px] text-muted-foreground/60">{label}</span>
+                <span className="text-[10px] text-white/80 text-right">{value}</span>
+              </div>
+            ))}
+            <a
+              href={resumePdf}
+              download="Ankit_Kapse_Resume.pdf"
+              className="mt-3 flex items-center justify-center gap-1.5 w-full py-1.5 rounded-lg text-[10px] tracking-widest uppercase transition-all text-primary border border-primary/30 hover:bg-primary/10"
+              data-testid="link-recruiter-resume"
+            >
+              Download CV
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Easter Egg Toast */}
+      <AnimatePresence>
+        {eggToast && (
+          <motion.div
+            key={eggToast}
+            initial={{ opacity: 0, y: -16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-[9998] px-5 py-3 rounded-xl font-mono text-xs tracking-wide text-center max-w-sm"
+            style={{
+              background: "rgba(6,8,17,0.92)",
+              border: "1px solid rgba(0,220,255,0.3)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "0 0 30px rgba(0,220,255,0.12)",
+              color: "rgba(0,220,255,0.9)",
+            }}
+            data-testid="toast-easter-egg"
+          >
+            {eggToast}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

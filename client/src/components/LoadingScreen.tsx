@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PHASES = [
-  "INITIALIZING AI SYSTEMS...",
-  "LOADING NEURAL MODULES...",
-  "SYNCING DATA STREAMS...",
-  "ANKIT KAPSE — ONLINE",
+  "INITIALIZING PORTFOLIO...",
+  "LOADING AI ENGINE...",
+  "CONNECTING NEURAL CORE...",
+  "LAUNCHING EXPERIENCE...",
+  "ACCESS GRANTED.",
 ];
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {

@@ -1,0 +1,427 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERACTIVE AI EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT
+
+Do NOT use a human photograph.
+
+Do NOT use a 3D avatar.
+
+Instead, transform the Hero Section into an interactive AI playground that immediately grabs the visitor's attention.
+
+The website should feel like entering an AI Operating System rather than a traditional portfolio.
+
+The user should want to interact with the website before scrolling.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HERO EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create a futuristic AI Command Center.
+
+Display a holographic dashboard in the center.
+
+SYSTEM STATUS
+
+AI CORE
+● ONLINE
+
+DATA ENGINE
+● ACTIVE
+
+AUTOMATION
+● RUNNING
+
+LLM AGENTS
+● CONNECTED
+
+GPU
+● READY
+
+NETWORK
+● SECURE
+
+WELCOME...
+
+Behind this dashboard create:
+
+• Animated neural network
+• Floating AI particles
+• Glass cubes
+• Floating holographic rings
+• Animated code
+• Digital grid
+• Floating AI chips
+• Moving data streams
+• Soft volumetric lighting
+
+Everything should move slowly and smoothly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERACTIVE MINI GAMES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Instead of displaying a static hero image, include interactive experiences.
+
+━━━━━━━━━━━━━━━━━━━━━━
+GAME 1
+AI TERMINAL
+━━━━━━━━━━━━━━━━━━━━━━
+
+A realistic hacker terminal.
+
+Visitors can type commands.
+
+Supported commands:
+
+help
+
+whoami
+
+skills
+
+projects
+
+experience
+
+resume
+
+certifications
+
+contact
+
+github
+
+linkedin
+
+clear
+
+Example
+
+> whoami
+
+Returns
+
+Hello.
+
+I'm Ankit Kapse.
+
+AI Engineer
+
+Data Engineer
+
+Co-Founder
+
+Builder of intelligent systems.
+
+Typing
+
+> projects
+
+Smoothly scrolls to Projects.
+
+Typing
+
+> resume
+
+Downloads CV.
+
+Typing
+
+> certifications
+
+Opens Certification section.
+
+━━━━━━━━━━━━━━━━━━━━━━
+GAME 2
+CONNECT THE NEURAL NETWORK
+━━━━━━━━━━━━━━━━━━━━━━
+
+Show glowing AI nodes.
+
+Visitors connect nodes together.
+
+Once connected
+
+Display
+
+Neural Network Activated
+
+Then animate data flowing through the network.
+
+Small popup
+
+"This is how machine learning models connect information."
+
+━━━━━━━━━━━━━━━━━━━━━━
+GAME 3
+BUILD YOUR OWN AI AGENT
+━━━━━━━━━━━━━━━━━━━━━━
+
+Allow visitors to drag modules into a workflow.
+
+Available modules
+
+Brain
+
+Memory
+
+Database
+
+API
+
+Vision
+
+Speech
+
+Automation
+
+When connected correctly
+
+The AI Agent comes alive.
+
+Display
+
+Congratulations!
+
+You built an AI Agent.
+
+Then suggest exploring your AI projects.
+
+━━━━━━━━━━━━━━━━━━━━━━
+GAME 4
+AI LOGIC CHALLENGE
+━━━━━━━━━━━━━━━━━━━━━━
+
+Display
+
+Can You Beat My AI?
+
+Start Challenge
+
+Ask 5 logical questions.
+
+Correct answers activate AI Core.
+
+Wrong answers provide hints.
+
+Final score appears.
+
+━━━━━━━━━━━━━━━━━━━━━━
+GAME 5
+TECH STACK ORBIT
+━━━━━━━━━━━━━━━━━━━━━━
+
+Instead of skill icons
+
+Create a rotating holographic sphere.
+
+Technologies orbit around it.
+
+Python
+
+React
+
+Next.js
+
+AWS
+
+SQL
+
+Machine Learning
+
+AI
+
+Automation
+
+Cloud
+
+Hovering over each technology reveals:
+
+Experience
+
+Projects
+
+Related certifications
+
+━━━━━━━━━━━━━━━━━━━━━━
+GAME 6
+AI MEMORY MATCH
+━━━━━━━━━━━━━━━━━━━━━━
+
+Memory card game using technology logos.
+
+Match
+
+Python
+
+AWS
+
+React
+
+OpenAI
+
+Git
+
+Docker
+
+TensorFlow
+
+Correct matches unlock skill information.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERACTIVE PROJECT EXPLORER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Instead of static project cards
+
+Create floating operating system windows.
+
+Hover
+
+↓
+
+Window opens
+
+↓
+
+Live animation starts
+
+↓
+
+Architecture diagram appears
+
+↓
+
+Tech Stack lights up
+
+↓
+
+GitHub button
+
+↓
+
+Live Demo
+
+↓
+
+Case Study
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AI CHATBOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Keep the chatbot.
+
+Redesign it as an AI Assistant.
+
+Floating holographic orb.
+
+Capabilities
+
+Answer questions about
+
+Projects
+
+Skills
+
+Resume
+
+Certifications
+
+Experience
+
+Contact
+
+Career goals
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EASTER EGGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Shift + A
+
+↓
+
+AI Mode
+
+Shift + G
+
+↓
+
+Developer Mode
+
+Shift + T
+
+↓
+
+Terminal Mode
+
+Shift + N
+
+↓
+
+Neural Network View
+
+Konami Code
+
+↓
+
+Unlock Secret Portfolio Mode
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECRUITER MODE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Floating toggle.
+
+Recruiter Mode
+
+When enabled
+
+Animations become minimal.
+
+Important information becomes prominent.
+
+Projects
+
+Skills
+
+Experience
+
+Resume
+
+Certifications
+
+Contact
+
+Optimized for quick review.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LOADING SCREEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AI Boot Sequence
+
+Initializing Portfolio...
+
+Loading AI Engine...
+
+Connecting Neural Core...
+
+Loading Projects...
+
+Launching Experience...
+
+Access Granted.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL GOAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The portfolio should not feel like a resume.
+
+It should feel like a futuristic AI product demo where visitors naturally explore, interact, play, and discover my work.
+
+The experience should be memorable, premium, cinematic, technically impressive, and worthy of Awwwards recognition while remaining smooth, fast, and professional.
