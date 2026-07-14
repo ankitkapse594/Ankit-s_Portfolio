@@ -28,7 +28,7 @@ import { useForm } from "react-hook-form";
 import { insertMessageSchema, type InsertMessage } from "@shared/routes";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
-import resumePdf from "@assets/Ankit_Kapse_Resume_final_1783792419523.pdf";
+import resumePdf from "@assets/Ankit_Kapse_Resume_final_02_1784046625634.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { UnderwaterScene } from "@/components/UnderwaterScene";
 import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
@@ -65,8 +65,7 @@ export default function Home() {
       location: "Nagpur",
       points: [
         "Lead end-to-end web portal development and digital consulting for political campaigns and organizational clients, owning delivery from architecture to deployment.",
-        "Design and implement AI agents and automated tech solutions, building scalable platforms and custom digital tools used in live campaigns.",
-        "Deliver startup-focused technology solutions, translating client requirements into scalable products and custom digital tools."
+        "Design and implement AI agents and automated tech solutions, building scalable platforms and custom digital tools used in live campaigns."
       ]
     },
     {
@@ -76,8 +75,7 @@ export default function Home() {
       location: "Remote",
       points: [
         "Completed structured training in cloud-based data handling and end-to-end pipeline development.",
-        "Applied data modelling and database management concepts to real-world datasets.",
-        "Used industry-standard tools for data cleaning, transformation, and visualization."
+        "Applied data modelling and database management concepts to real-world datasets."
       ]
     },
     {
@@ -86,7 +84,6 @@ export default function Home() {
       date: "Jul 2024 – Sep 2024",
       location: "Remote",
       points: [
-        "Gained hands-on experience with Python AI frameworks for algorithm implementation.",
         "Integrated data analysis and predictive modelling techniques into project workflows.",
         "Learned deployment and optimization of AI models in real-world systems."
       ]
@@ -102,7 +99,7 @@ export default function Home() {
     },
     {
       title: "Animal Diseases Detection System",
-      desc: "Built a deep-learning model (ResNet50) to detect animal diseases from microscopic images. Developed an end-to-end pipeline with OpenCV preprocessing for fast, accurate prediction. Generated automated reports covering disease name, symptoms, and treatment suggestions. Created a simple web interface enabling fast veterinary diagnosis.",
+      desc: "Built a deep-learning model (ResNet50) to detect animal diseases from microscopic images. Developed an end-to-end pipeline with OpenCV preprocessing for fast, accurate prediction. Created a simple web interface enabling fast veterinary diagnosis for end users.",
       tags: ["Python", "ResNet50", "OpenCV", "Deep Learning"],
       date: "Jul 2025 – Nov 2025"
     }
@@ -330,7 +327,7 @@ export default function Home() {
                 { label: "Location", value: "Nagpur, India" },
                 { label: "Degree", value: "B.Tech IT" },
                 { label: "College", value: "RCOEM" },
-                { label: "CGPA", value: "7.5" }
+                { label: "Graduation", value: "May 2027" }
               ].map((item) => (
                 <div key={item.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/5">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{item.label}</p>
