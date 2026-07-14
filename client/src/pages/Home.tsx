@@ -188,7 +188,7 @@ export default function Home() {
             </h2>
             
             <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed">
-              I don't just write code — I build systems that scale, ship, and solve real problems. Technical Head with end-to-end experience in web platforms, AI/ML, and Cloud Computing & Virtualization, including a Docker/Kubernetes based Virtual RAM platform with sub-250ms latency.
+              A dedicated technology professional specialising in web portal development, AI solutions, and scalable platforms. Currently leading tech at Rajsanyog.
             </p>
             
             <div className="flex flex-wrap gap-4">
