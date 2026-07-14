@@ -1,0 +1,174 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3D AI AVATAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT:
+
+Do NOT use my real photograph anywhere on the website.
+
+Instead, create a premium futuristic 3D avatar that represents me as an AI Engineer and Tech Entrepreneur.
+
+The avatar should become the visual identity of my portfolio.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STYLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create a cinematic, semi-realistic, high-end 3D character inspired by:
+
+• Iron Man AI Lab
+• Jarvis
+• Apple Vision Pro
+• OpenAI
+• NVIDIA
+• TRON
+• Blade Runner 2049 (clean aesthetic)
+• Arcane-quality 3D rendering
+• Love, Death & Robots
+
+Avoid:
+❌ Cartoon
+❌ Anime
+❌ Low-poly
+❌ Game-like characters
+❌ Generic business illustrations
+
+The avatar should feel like a futuristic AI architect.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+APPEARANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Design a young Indian AI Engineer wearing:
+
+• Black futuristic jacket
+• Minimal hoodie
+• Smart casual clothing
+• Metallic AI accents
+• Soft glowing cyan or blue trims
+• Clean modern hairstyle
+• Intelligent and confident expression
+
+The avatar should look approachable, professional, and innovative.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3D ENVIRONMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The avatar should float in the Hero section surrounded by:
+
+• Floating holographic screens
+• AI neural network particles
+• Digital data streams
+• Rotating wireframe cubes
+• Floating geometric shapes
+• Holographic rings
+• Glass UI panels
+• Animated code snippets
+• AI circuitry effects
+• Soft volumetric lighting
+
+Everything should move slowly and naturally.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANIMATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The avatar should never remain static.
+
+Include subtle idle animations:
+
+• Gentle breathing motion
+• Slow floating
+• Slight head movement
+• Natural blinking
+• Shoulder movement
+• Clothing physics
+• Hair movement
+• Ambient glow animation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MOUSE INTERACTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+When the cursor moves:
+
+• Avatar follows slightly with head and shoulders
+• Eyes subtly track cursor
+• Floating holograms react
+• Camera shifts slightly
+• Light reflections update
+• Background particles move gently
+
+Use smooth easing.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCROLL INTERACTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+As users scroll:
+
+• Avatar rotates slightly
+• Camera slowly zooms
+• Holographic objects rearrange
+• Lighting subtly changes
+• Floating rings animate
+
+Keep all movements subtle and premium.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VISUAL QUALITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Render quality should resemble:
+
+• Pixar-quality materials
+• Apple keynote visuals
+• Unreal Engine cinematics
+• Blender Cycles rendering
+• High-end product advertisements
+
+Use:
+
+• Physically based rendering (PBR)
+• HDR lighting
+• Soft shadows
+• Ambient occlusion
+• Screen-space reflections
+• Glass materials
+• Metallic accents
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TECHNICAL IMPLEMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use:
+
+• Three.js
+• React Three Fiber
+• Drei
+• GSAP
+• Framer Motion
+
+Load the avatar as an optimized GLB/GLTF model with compressed textures.
+
+The model should maintain smooth 60 FPS performance.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESPONSIVE BEHAVIOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Desktop:
+- Large centerpiece in the Hero section.
+
+Tablet:
+- Slightly smaller with maintained interactions.
+
+Mobile:
+- Simplified animations and optimized rendering while preserving the premium look.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL GOAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The avatar should become the signature visual element of the portfolio, replacing a traditional profile photo with a memorable, cinematic AI Engineer identity that feels futuristic, elegant, and unique.

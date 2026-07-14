@@ -27,10 +27,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { insertMessageSchema, type InsertMessage } from "@shared/routes";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import profileImg from "@assets/WhatsApp_Image_2025-10-05_at_19.33.25_1767536769507.jpeg";
 import resumePdf from "@assets/Ankit_Kapse_Resume_final_02_1784046625634.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
-import { UnderwaterScene } from "@/components/UnderwaterScene";
+import { AIBackground } from "@/components/AIBackground";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { AIAvatar } from "@/components/AIAvatar";
 import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
@@ -41,6 +42,7 @@ export default function Home() {
   const contactMutation = useSubmitContact();
   const scrambledName = useScramble("Ankit Kapse", 600, 30);
   const [activeProject, setActiveProject] = useState<ProjectData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
@@ -137,10 +139,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30">
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       {/* Global overlays */}
       <CustomCursor />
       <ScrollProgress />
-      <UnderwaterScene />
+      <AIBackground />
 
       <Navigation />
       
@@ -242,61 +245,8 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="order-1 lg:order-2 flex justify-center relative"
-            style={{ perspective: 800 }}
           >
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              {/* Outer spinning rings */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-[spin_10s_linear_infinite]" />
-              <div className="absolute inset-4 rounded-full border border-white/10 animate-[spin_15s_linear_infinite_reverse]" />
-              {/* Extra 3D orbit */}
-              <motion.div
-                animate={{ rotateX: [0, 360] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                style={{ transformStyle: "preserve-3d" }}
-                className="absolute inset-8 rounded-full border border-secondary/20"
-              />
-
-              {/* Profile photo */}
-              <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-white/5 shadow-2xl bg-black">
-                <img 
-                  src={profileImg} 
-                  alt="Ankit Kapse" 
-                  className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity hover:scale-105 duration-500" 
-                  data-testid="img-profile"
-                />
-                {/* Scanner line */}
-                <motion.div
-                  animate={{ top: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-                  className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/70 to-transparent"
-                  style={{ boxShadow: "0 0 12px rgba(0,255,255,0.6)" }}
-                />
-              </div>
-              
-              {/* Floating tech badges */}
-              <motion.div 
-                animate={{ y: [0, -12, 0], rotateZ: [0, 5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 glass-panel p-3 rounded-xl border border-primary/40 shadow-[0_0_15px_rgba(0,255,255,0.2)]"
-              >
-                <Bot className="text-primary w-6 h-6" />
-              </motion.div>
-              <motion.div 
-                animate={{ y: [0, 12, 0], rotateZ: [0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -left-4 glass-panel p-3 rounded-xl border border-secondary/40 shadow-[0_0_15px_rgba(157,78,221,0.2)]"
-              >
-                <Database className="text-secondary w-6 h-6" />
-              </motion.div>
-              {/* Third badge */}
-              <motion.div 
-                animate={{ x: [0, 10, 0], y: [0, -6, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-4 -right-4 glass-panel p-3 rounded-xl border border-accent/30 shadow-[0_0_15px_rgba(255,26,140,0.2)]"
-              >
-                <Cpu className="text-accent w-6 h-6" />
-              </motion.div>
-            </div>
+            <AIAvatar />
           </motion.div>
         </div>
 

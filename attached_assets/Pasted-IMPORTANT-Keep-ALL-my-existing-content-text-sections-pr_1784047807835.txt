@@ -1,0 +1,297 @@
+IMPORTANT:
+
+Keep ALL my existing content, text, sections, projects, certifications, CV download, AI chatbot, navigation, and functionality EXACTLY as they are.
+
+DO NOT replace my portfolio content with placeholder content.
+
+The only thing to change is the visual design, animation system, interactions, and overall experience.
+
+Use the uploaded 3D Creator portfolio only as inspiration for motion design, layout quality, transitions, and cinematic presentation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DESIGN DIRECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Transform my portfolio into a premium futuristic AI experience.
+
+Think of a combination of
+
+• Apple Vision Pro
+• OpenAI
+• NVIDIA
+• Vercel
+• Stripe
+• Linear
+• Framer
+• Awwwards-winning portfolios
+
+The website should feel like an AI operating system instead of a traditional portfolio.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MOTION SYSTEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Implement the same premium animation quality as the reference portfolio.
+
+Include:
+
+• Smooth page transitions
+• Cinematic section reveals
+• Scroll-linked animations
+• Sticky scrolling sections
+• Layered depth transitions
+• Floating elements
+• Magnetic hover interactions
+• Mouse-following effects
+• Animated typography
+• Card stacking animations
+• Smooth easing everywhere
+
+Never use abrupt animations.
+
+Everything should feel soft, premium and natural.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3D EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Replace the creator-themed 3D assets with AI-themed elements.
+
+Use subtle floating 3D objects such as:
+
+• Glass cubes
+• Neural network nodes
+• Holographic rings
+• Digital spheres
+• Floating AI chips
+• Abstract polygons
+• Data particles
+• Wireframe geometry
+• Light beams
+• Animated grids
+
+These objects should slowly float, rotate and react slightly to cursor movement.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HERO SECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Keep my existing hero content exactly the same.
+
+Only redesign it visually.
+
+Include:
+
+• Huge animated typography
+• Mouse-reactive text
+• Floating holographic AI objects
+• Animated gradient mesh background
+• Neural network animation
+• Soft glowing lighting
+• Glassmorphism CTA buttons
+
+The hero should immediately communicate a premium AI engineer identity.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION TRANSITIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Every section should connect seamlessly.
+
+Instead of simple scrolling, use:
+
+• Smooth camera-like movement
+• Depth transitions
+• Blur to focus effects
+• Layered parallax
+• Perspective movement
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROJECT SECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Keep all my projects.
+
+Only redesign the presentation.
+
+Projects should appear as premium floating 3D glass cards.
+
+Each card should have:
+
+• 3D tilt
+• Glass effect
+• Reflection
+• Soft neon glow
+• Hover elevation
+• Animated border
+• Smooth shadow
+• Image zoom
+• Live preview animation
+
+Use sticky scrolling similar to the reference portfolio.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CERTIFICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Keep my certification links.
+
+Present them as floating glass cards.
+
+Cards should:
+
+• Rotate slightly on hover
+• Glow softly
+• Expand smoothly
+• Display institution logo
+• Open Google Drive folders
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DOWNLOAD CV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Keep my Download CV functionality.
+
+Present it as a premium holographic button.
+
+Include subtle light sweep animation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AI CHATBOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The chatbot should appear as a floating holographic AI orb.
+
+When opened:
+
+• Glassmorphism chat window
+• Smooth expand animation
+• AI pulse animation
+• Typing indicator
+• Modern message bubbles
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BACKGROUND
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use multiple layered backgrounds:
+
+Layer 1
+
+Dark gradient
+
+Layer 2
+
+Animated neural network
+
+Layer 3
+
+Floating particles
+
+Layer 4
+
+Animated grid
+
+Layer 5
+
+Soft moving light beams
+
+All layers should move independently with subtle parallax.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Buttons
+
+• Magnetic hover
+• Depth movement
+• Glow animation
+
+Cards
+
+• 3D tilt
+• Reflection
+• Scale
+• Shadow
+
+Icons
+
+• Float slightly
+• Rotate subtly
+• Glow on hover
+
+Text
+
+• Character reveal
+• Gradient animation
+• Smooth fade
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LOADING EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create a cinematic loading screen.
+
+Show:
+
+• AI logo animation
+• Neural network drawing itself
+• Progress indicator
+• Smooth fade into hero
+
+Loading should take around 2–3 seconds or finish when assets are ready.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TECHNOLOGY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use:
+
+• React
+• Next.js
+• TypeScript
+• Tailwind CSS
+• Three.js
+• React Three Fiber
+• Drei
+• Framer Motion
+• GSAP
+• Lenis Smooth Scroll
+• React Icons
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PERFORMANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Maintain excellent performance.
+
+Use:
+
+• Lazy loading
+• Code splitting
+• Optimized assets
+• GPU-accelerated animations
+• Responsive design
+• Accessibility best practices
+
+Target:
+
+• 90+ Lighthouse Performance
+• 90+ Accessibility
+• 90+ SEO
+• Smooth 60 FPS animations
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL GOAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Do not redesign my portfolio content.
+
+Do not change my resume details.
+
+Do not replace my projects.
+
+Do not modify my certifications.
+
+Only elevate the visual experience into an Awwwards-quality futuristic AI portfolio with cinematic motion, premium 3D interactions, and polished micro-animations that feel immersive, elegant, and professional.
