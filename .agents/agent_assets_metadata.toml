@@ -1,5 +1,16 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "SE9Sbuy0WLoukb7PmcQgP"
+uri = "file://attached_assets/ai_avatar.png"
+type = "image"
+title = "futuristic AI avatar portrait"
+
+[[generated]]
+id = "gxpG1yY8s6DEtGpajb7pI"
+uri = "file://attached_assets/ai_avatar_2.png"
+type = "image"
+title = "AI avatar greeting pose"
 
 [[outputs]]
 id = "AbteXMNEqFojuRP3gSGVh"

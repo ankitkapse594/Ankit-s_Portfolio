@@ -1,166 +1,271 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { Bot, Cpu, Database, Zap } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import avatarPortrait from "@assets/ai_avatar.png";
+import avatarGreeting from "@assets/ai_avatar_2.png";
 
-const HEX_SVG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='34' viewBox='0 0 30 34'%3E%3Cpolygon points='15,2 28,9.5 28,24.5 15,32 2,24.5 2,9.5' fill='none' stroke='%2300ffff' stroke-width='0.4' opacity='0.5'/%3E%3C/svg%3E")`;
+const GREETING =
+  "Hello! I'm Ankit Kapse. Welcome to my AI Laboratory. " +
+  "I'm an AI Engineer, Data Engineer, and Technical Head at Rajsanyog, " +
+  "passionate about building intelligent systems that solve real-world problems. " +
+  "Feel free to explore my projects, certifications, and experience. " +
+  "Let's build the future together.";
 
 export function AIAvatar() {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [isGreeting, setIsGreeting] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [greeted, setGreeted] = useState(false);
 
+  const stopSpeech = useCallback(() => {
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    setIsSpeaking(false);
+    setIsGreeting(false);
+    setGreeted(true);
+  }, []);
+
+  /* ─── Greeting + speech ─── */
   useEffect(() => {
-    const handleMouse = (e: MouseEvent) => {
+    if (sessionStorage.getItem("ak_greeted")) { setGreeted(true); return; }
+
+    const timer = setTimeout(() => {
+      setIsGreeting(true);
+      sessionStorage.setItem("ak_greeted", "1");
+
+      if (!("speechSynthesis" in window)) {
+        setTimeout(stopSpeech, 5000);
+        return;
+      }
+
+      const utter = new SpeechSynthesisUtterance(GREETING);
+      utter.rate = 0.88;
+      utter.pitch = 1.0;
+      utter.volume = 0.85;
+
+      utter.onstart = () => setIsSpeaking(true);
+      utter.onend = () => {
+        setIsSpeaking(false);
+        setTimeout(() => { setIsGreeting(false); setGreeted(true); }, 800);
+      };
+      utter.onerror = () => {
+        setIsSpeaking(false);
+        setIsGreeting(false);
+        setGreeted(true);
+      };
+
+      window.speechSynthesis.speak(utter);
+    }, 3600);
+
+    return () => clearTimeout(timer);
+  }, [stopSpeech]);
+
+  /* ─── Mouse parallax tilt ─── */
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
       const el = wrapRef.current;
       if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / (window.innerWidth / 2);
-      const dy = (e.clientY - cy) / (window.innerHeight / 2);
-      el.style.transform = `perspective(900px) rotateY(${dx * 9}deg) rotateX(${-dy * 9}deg)`;
+      const dx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const dy = (e.clientY / window.innerHeight - 0.5) * 2;
+      el.style.transform = `perspective(900px) rotateY(${dx * 7}deg) rotateX(${-dy * 7}deg)`;
     };
-    const handleLeave = () => {
-      if (wrapRef.current) wrapRef.current.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
-    };
-    window.addEventListener("mousemove", handleMouse);
-    window.addEventListener("mouseleave", handleLeave);
-    return () => {
-      window.removeEventListener("mousemove", handleMouse);
-      window.removeEventListener("mouseleave", handleLeave);
-    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
+
+  const currentImg = isGreeting ? avatarGreeting : avatarPortrait;
 
   return (
     <div
       ref={wrapRef}
-      className="relative w-72 h-72 md:w-96 md:h-96"
-      style={{ transformStyle: "preserve-3d", transition: "transform 0.15s ease-out" }}
+      className="relative"
+      style={{
+        width: "min(22rem, 92vw)",
+        height: "min(28rem, 115vw)",
+        transformStyle: "preserve-3d",
+        transition: "transform 0.14s ease-out",
+      }}
     >
-      {/* Ambient glow */}
+      {/* Ambient glow halo */}
       <div
-        className="absolute -inset-8 rounded-full pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(0,255,255,0.07) 0%, rgba(100,50,200,0.05) 50%, transparent 70%)",
-          filter: "blur(20px)",
+          inset: "-3rem",
+          background:
+            "radial-gradient(ellipse, rgba(0,220,255,0.07) 0%, rgba(120,50,230,0.05) 45%, transparent 70%)",
+          filter: "blur(24px)",
         }}
       />
 
-      {/* Outer dashed ring */}
-      <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/25 animate-[spin_12s_linear_infinite]" />
+      {/* Orbit decorations */}
+      <div className="absolute -inset-5 rounded-2xl border border-dashed border-primary/12 animate-[spin_18s_linear_infinite]" />
+      <div className="absolute -inset-2 rounded-2xl border border-secondary/8 animate-[spin_24s_linear_infinite_reverse]" />
 
-      {/* Second ring */}
-      <div className="absolute inset-4 rounded-full border border-secondary/15 animate-[spin_18s_linear_infinite_reverse]" />
-
-      {/* 3D tilted orbit ring */}
+      {/* Main avatar frame */}
       <motion.div
-        animate={{ rotateZ: 360 }}
-        transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-        className="absolute rounded-full border border-primary/20"
-        style={{ inset: "8%", transform: "rotateX(68deg)" }}
-      />
-
-      {/* Central holographic orb */}
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 rounded-full overflow-hidden"
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0 rounded-2xl overflow-hidden"
         style={{
-          background:
-            "radial-gradient(circle at 38% 36%, rgba(0,255,255,0.14) 0%, rgba(6,8,17,0.97) 55%, rgba(120,50,230,0.08) 100%)",
-          border: "1px solid rgba(0,255,255,0.22)",
+          border: "1px solid rgba(0,220,255,0.22)",
           boxShadow:
-            "0 0 50px rgba(0,255,255,0.08), 0 0 100px rgba(100,50,200,0.06), inset 0 0 80px rgba(0,0,0,0.6)",
+            "0 0 50px rgba(0,220,255,0.1), 0 0 100px rgba(120,50,230,0.07), inset 0 0 0 1px rgba(255,255,255,0.04)",
         }}
       >
-        {/* Hex grid texture */}
-        <div className="absolute inset-0" style={{ backgroundImage: HEX_SVG, opacity: 0.12 }} />
+        {/* Avatar image — cross-fades on greeting state */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentImg}
+            src={currentImg}
+            alt="Ankit Kapse — AI Engineer"
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+            className="w-full h-full object-cover object-top select-none"
+            draggable={false}
+            style={{ filter: "brightness(1.06) contrast(1.03) saturate(1.1)" }}
+          />
+        </AnimatePresence>
 
-        {/* Inner glow sphere highlight */}
+        {/* Bottom gradient overlay */}
         <div
-          className="absolute rounded-full"
+          className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
           style={{
-            width: "40%",
-            height: "40%",
-            top: "15%",
-            left: "18%",
-            background: "radial-gradient(circle, rgba(0,255,255,0.18) 0%, transparent 70%)",
-            filter: "blur(8px)",
+            background: "linear-gradient(0deg, rgba(6,8,17,0.92) 0%, rgba(6,8,17,0.4) 60%, transparent 100%)",
           }}
         />
 
-        {/* AK monogram */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-          <motion.span
-            animate={{ opacity: [0.85, 1, 0.85] }}
-            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-            className="font-mono font-black select-none"
-            style={{
-              fontSize: "clamp(2.5rem, 6vw, 3.5rem)",
-              background: "linear-gradient(135deg, #00ffff 0%, #a855f7 50%, #00ffff 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 0 20px rgba(0,255,255,0.4))",
-            }}
-          >
-            AK
-          </motion.span>
-          <span
-            className="font-mono tracking-[0.28em] uppercase select-none"
-            style={{ fontSize: "0.55rem", color: "rgba(0,220,255,0.45)" }}
-          >
-            AI · ENGINEER
-          </span>
-        </div>
-
-        {/* Scanning line */}
+        {/* Scan line */}
         <motion.div
           animate={{ top: ["0%", "100%", "0%"] }}
-          transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 w-full"
+          transition={{ duration: 4.5, repeat: Infinity, ease: "linear" }}
+          className="absolute left-0 w-full pointer-events-none"
           style={{
             height: "2px",
-            background: "linear-gradient(90deg, transparent, rgba(0,255,255,0.65), transparent)",
-            boxShadow: "0 0 10px rgba(0,255,255,0.4)",
+            background: "linear-gradient(90deg, transparent, rgba(0,220,255,0.45), transparent)",
+            boxShadow: "0 0 10px rgba(0,220,255,0.3)",
           }}
         />
 
-        {/* Corner circuit brackets */}
-        <div className="absolute top-5 left-5 w-5 h-5 border-t border-l border-primary/35 pointer-events-none" />
-        <div className="absolute top-5 right-5 w-5 h-5 border-t border-r border-primary/35 pointer-events-none" />
-        <div className="absolute bottom-5 left-5 w-5 h-5 border-b border-l border-primary/35 pointer-events-none" />
-        <div className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-primary/35 pointer-events-none" />
+        {/* Corner brackets */}
+        {[
+          "top-3 left-3 border-t-2 border-l-2",
+          "top-3 right-3 border-t-2 border-r-2",
+          "bottom-3 left-3 border-b-2 border-l-2",
+          "bottom-3 right-3 border-b-2 border-r-2",
+        ].map((cls, i) => (
+          <div key={i} className={`absolute w-5 h-5 border-primary/50 pointer-events-none ${cls}`} />
+        ))}
+
+        {/* Status bar */}
+        <div className="absolute bottom-0 inset-x-0 px-4 py-2.5 flex items-center justify-between pointer-events-none">
+          <span className="text-[9px] font-mono text-primary/60 tracking-[0.2em] uppercase">
+            ANKIT KAPSE · AI ENGINEER
+          </span>
+          <AnimatePresence>
+            {isSpeaking && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center gap-1"
+              >
+                {[...Array(4)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="w-0.5 bg-primary rounded-full"
+                    animate={{ height: ["4px", "12px", "4px"] }}
+                    transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.12 }}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
 
-      {/* Floating tech badges */}
+      {/* Speaking glow pulse ring */}
+      <AnimatePresence>
+        {isSpeaking && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.02, 1] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, repeat: Infinity }}
+            className="absolute inset-0 rounded-2xl border-2 border-primary/40 pointer-events-none"
+            style={{ boxShadow: "0 0 30px rgba(0,220,255,0.15)" }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Greeting speech bubble */}
+      <AnimatePresence>
+        {isGreeting && (
+          <motion.div
+            initial={{ opacity: 0, y: 12, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.96 }}
+            transition={{ duration: 0.5 }}
+            className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap glass-panel px-4 py-2 rounded-xl border border-primary/30 cursor-pointer"
+            style={{ boxShadow: "0 0 20px rgba(0,220,255,0.1)" }}
+            onClick={stopSpeech}
+            title="Click to stop"
+          >
+            <p className="text-sm font-mono text-primary">
+              {isSpeaking ? (
+                <span>👋 Hello! Welcome to my AI Lab <span className="text-primary/50 text-xs">(click to stop)</span></span>
+              ) : (
+                <span>👋 Hello! Welcome to my AI Lab!</span>
+              )}
+            </p>
+            {/* Arrow */}
+            <div className="absolute -bottom-[7px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 border-r border-b border-primary/30 bg-card/80 backdrop-blur-sm" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating holographic side panels */}
       <motion.div
-        animate={{ y: [0, -11, 0], rotateZ: [0, 4, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 -right-4 glass-panel p-3 rounded-xl border border-primary/40 shadow-[0_0_15px_rgba(0,255,255,0.2)]"
+        animate={{ y: [0, -8, 0], x: [0, 3, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        className="absolute -right-16 top-1/4 hidden lg:block"
       >
-        <Bot className="text-primary w-6 h-6" />
+        <div
+          className="w-12 h-20 rounded-lg border border-primary/20 backdrop-blur-sm flex flex-col items-center justify-center gap-1.5"
+          style={{
+            background: "rgba(0,220,255,0.04)",
+            boxShadow: "0 0 15px rgba(0,220,255,0.05)",
+          }}
+        >
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="h-px rounded-full bg-primary/30"
+              style={{ width: `${40 + Math.sin(i) * 20}%` }}
+              animate={{ opacity: [0.3, 0.8, 0.3], width: [`${40 + Math.sin(i) * 20}%`, `${60 + Math.cos(i) * 20}%`, `${40 + Math.sin(i) * 20}%`] }}
+              transition={{ duration: 2 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ))}
+        </div>
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, 11, 0], rotateZ: [0, -4, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-4 -left-4 glass-panel p-3 rounded-xl border border-secondary/40 shadow-[0_0_15px_rgba(157,78,221,0.2)]"
+        animate={{ y: [0, 10, 0], x: [0, -3, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+        className="absolute -left-14 bottom-1/3 hidden lg:block"
       >
-        <Database className="text-secondary w-6 h-6" />
-      </motion.div>
-
-      <motion.div
-        animate={{ x: [0, 9, 0], y: [0, -5, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-4 -right-4 glass-panel p-3 rounded-xl border border-accent/30 shadow-[0_0_15px_rgba(255,26,140,0.2)]"
-      >
-        <Cpu className="text-accent w-6 h-6" />
-      </motion.div>
-
-      <motion.div
-        animate={{ x: [0, -7, 0], y: [0, 7, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
-        className="absolute -top-4 -left-4 glass-panel p-3 rounded-xl border border-yellow-400/30 shadow-[0_0_15px_rgba(250,200,0,0.15)]"
-      >
-        <Zap className="text-yellow-400 w-6 h-6" />
+        <div
+          className="w-10 h-10 rounded-lg border border-secondary/20 backdrop-blur-sm flex items-center justify-center"
+          style={{
+            background: "rgba(120,50,230,0.05)",
+            boxShadow: "0 0 12px rgba(120,50,230,0.05)",
+          }}
+        >
+          <motion.div
+            className="w-5 h-5 rounded-sm border border-secondary/40"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
       </motion.div>
     </div>
   );

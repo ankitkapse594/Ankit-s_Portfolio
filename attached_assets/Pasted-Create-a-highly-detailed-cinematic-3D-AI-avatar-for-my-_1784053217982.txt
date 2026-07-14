@@ -1,0 +1,277 @@
+Create a highly detailed cinematic 3D AI avatar for my futuristic developer portfolio.
+
+The avatar represents me as an Artificial Intelligence Engineer, Data Engineer, Full Stack Developer, and Co-Founder.
+
+This avatar is NOT a realistic photograph.
+
+Instead, it should look like a premium digital human from a futuristic AI laboratory.
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+STYLE
+
+Create a semi-realistic, ultra-premium digital human inspired by
+
+• Iron Man's Jarvis Lab
+• Apple Vision Pro
+• OpenAI
+• NVIDIA
+• TRON Legacy
+• Love Death & Robots
+• Unreal Engine 5 Cinematics
+• Arcane CGI quality
+
+Avoid
+
+❌ Cartoon
+❌ Anime
+❌ Generic business person
+❌ Robotic face
+❌ Low-poly character
+❌ Unrealistic proportions
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+CHARACTER
+
+Young Indian male
+
+Age around 21–24
+
+Friendly
+
+Confident
+
+Intelligent
+
+Professional
+
+Calm facial expression
+
+Natural smile
+
+Modern hairstyle
+
+Clean appearance
+
+Athletic body proportions
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+OUTFIT
+
+Premium futuristic clothing
+
+Black jacket
+
+Minimal hoodie
+
+Dark cargo pants
+
+Modern sneakers
+
+Subtle metallic details
+
+Cyan glowing AI circuitry integrated into clothing
+
+No superhero armor
+
+No helmets
+
+Keep it elegant and minimal.
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+ENVIRONMENT
+
+The avatar is standing inside a futuristic AI laboratory.
+
+Around the avatar are
+
+• Floating holographic monitors
+
+• AI neural network nodes
+
+• Floating code snippets
+
+• Python icon
+
+• AWS cloud
+
+• React logo
+
+• AI chip
+
+• Digital particles
+
+• Rotating holographic rings
+
+• Floating cubes
+
+• Transparent glass UI panels
+
+• Animated circuitry
+
+• Soft volumetric light
+
+Everything should move slowly.
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+IDLE ANIMATION
+
+The avatar should never remain static.
+
+Include
+
+• Gentle breathing
+
+• Natural blinking
+
+• Small head movements
+
+• Shoulder movement
+
+• Slow floating motion
+
+• Clothing physics
+
+• Hair movement
+
+• Soft glow animation
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+GREETING ANIMATION
+
+When a visitor opens the portfolio for the first time:
+
+The avatar looks toward the visitor.
+
+A soft blue holographic circle appears.
+
+The avatar smiles naturally.
+
+The right hand raises for a subtle greeting.
+
+The avatar waves gently.
+
+Then the avatar says:
+
+"Hello!
+
+I'm Ankit Kapse.
+
+Welcome to my AI Laboratory.
+
+I'm an AI Engineer, Data Engineer, and Co-Founder passionate about building intelligent systems that solve real-world problems.
+
+Feel free to explore my projects, certifications, and experience.
+
+Let's build the future together."
+
+While speaking:
+
+• Mouth sync is natural
+
+• Facial expressions match speech
+
+• Hand gestures are smooth
+
+• Eyes occasionally blink
+
+• Small body movement
+
+• Holographic particles react to the voice
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+MOUSE INTERACTION
+
+When the mouse moves
+
+The avatar
+
+• slightly follows the cursor
+
+• eyes track the cursor
+
+• holographic screens rotate
+
+• floating particles move
+
+• camera shifts subtly
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+SCROLL INTERACTION
+
+As the user scrolls
+
+The avatar slowly rotates
+
+The camera slightly zooms
+
+Background holograms rearrange
+
+Lighting changes gently
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+VISUAL QUALITY
+
+Render quality should match
+
+Pixar
+
+Apple Keynote
+
+NVIDIA Omniverse
+
+Unreal Engine 5
+
+Blender Cycles
+
+Use
+
+PBR materials
+
+HDR lighting
+
+Soft shadows
+
+Ambient Occlusion
+
+Screen Space Reflections
+
+Glass materials
+
+Metallic surfaces
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+VOICE
+
+Warm
+
+Friendly
+
+Confident
+
+Professional
+
+Natural Indian English accent
+
+Moderate pace
+
+Clear pronunciation
+
+Calm tone
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+FINAL GOAL
+
+The avatar should become the digital face of my portfolio.
+
+Visitors should immediately feel they are being welcomed into a futuristic AI operating system by a professional AI engineer rather than simply viewing a traditional portfolio website.
