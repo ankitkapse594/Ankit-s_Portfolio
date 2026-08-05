@@ -1,0 +1,127 @@
+The Netlify deploy errored, with the following guidance provided:
+
+The build fails at [line 68](#L68) because `./node_modules/.bin/vite` does not exist — meaning `vite` was not installed as a dependency despite npm reporting success.
+
+**Cause:** The `npm warn config optional` warnings combined with [line 27](#L27) (`npm error Exit handler never called!`) suggest the `npm install` did not complete cleanly. This likely means `vite` is missing from `package.json` as a dependency (or devDependency), so it was never installed.
+
+**Solution:**
+
+1. Verify that `vite` is listed in your [`package.json`](https://github.com/ankitkapse594/Ankit-s_Portfolio/blob/main/package.json) under `devDependencies` (or `dependencies`):
+
+```json
+{
+  "devDependencies": {
+    "vite": "^7.3.0"
+  }
+}
+```
+
+2. If it's missing, add it locally and commit:
+
+```bash
+npm install --save-dev vite
+git add package.json package-lock.json
+git commit -m "Add vite as devDependency"
+git push
+```
+
+3. Once `vite` is confirmed in `package.json`, you can also simplify the build command in your `netlify.toml` to just:
+
+```toml
+[build]
+  command = "vite build"
+```
+
+This avoids relying on the direct binary path and lets Netlify resolve it from the installed packages.
+
+The relevant error logs are:
+
+Line 0: build-image version: 969defd95f3977f8de9cb1f48802a7e6f3d8c0b3 (noble-new-builds)
+Line 1: buildbot version: b34371363d3ca30c2d1b8c0c23cb261247d6f156
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/ankitkapse594/Ankit-s_Portfolio
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom build command detected. Proceeding with the specified command: './node_modules/.bin/vite build'
+Line 9: Installing dependencies
+Line 10: mise ~/.config/mise/config.toml tools: python@3.14.3
+Line 11: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+Line 12: mise ~/.config/mise/config.toml tools: go@1.26.2
+Line 13: Attempting Node.js version '20' from .nvmrc
+Line 17: No npm workspaces detected
+Line 18: npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+Line 19: npm warn config `--include=optional` to include them.
+Line 20: npm warn config
+Line 21: npm warn config       Default value does install optional deps unless otherwise omitted.
+Line 22: Installing npm packages using npm version 10.8.2
+Line 23: npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+Line 24: npm warn config `--include=optional` to include them.
+Line 25: npm warn config
+Line 26: npm warn config       Default value does install optional deps unless otherwise omitted.
+Line 27: npm error Exit handler never called!
+Line 28: npm error This is an error with npm itself. Please report this error at:
+Line 29: npm error   <https://github.com/npm/cli/issues>
+Line 30: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2026-08-05T18_27_30_414Z-debug-0.log
+Line 31: npm packages installed
+Line 32: npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+Line 33: npm warn config `--include=optional` to include them.
+Line 34: npm warn config
+Line 35: npm warn config       Default value does install optional deps unless otherwise omitted.
+Line 36: Successfully installed dependencies
+Line 37: Detected 1 framework(s)
+Line 38: "vite" at version "7.3.0"
+Line 39: Starting build script
+Line 40: Section completed: initializing
+Line 41: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 42: ​
+Line 43: Netlify Build                                                 
+Line 44: ────────────────────────────────────────────────────────────────
+Line 45: ​
+Line 46: ❯ Version
+Line 47:   @netlify/build 36.1.5
+Line 48: ​
+Line 49: ❯ Flags
+Line 50:   accountId: 69bcd84df19dc7a832d72b5d
+Line 51:   baseRelDir: true
+Line 60: ​
+Line 61: ❯ Context
+Line 62:   production
+Line 63: ​
+Line 64: build.command from netlify.toml                               
+Line 65: ────────────────────────────────────────────────────────────────
+Line 66: ​
+Line 67: $ ./node_modules/.bin/vite build
+Line 68: bash: line 1: ./node_modules/.bin/vite: No such file or directory
+Line 69: ​
+Line 70: "build.command" failed                                        
+Line 71: ────────────────────────────────────────────────────────────────
+Line 72: ​
+Line 73:   Error message
+Line 74:   Command failed with exit code 127: ./node_modules/.bin/vite build
+Line 75: ​
+Line 76:   Error location
+Line 77:   In build.command from netlify.toml:
+Line 78:   ./node_modules/.bin/vite build
+Line 79: ​
+Line 80:   Resolved config
+Line 81:   build:
+Line 82:     command: ./node_modules/.bin/vite build
+Line 83:     commandOrigin: config
+Line 84:     environment:
+Line 85:       - SUPABASE_ANON_KEY
+Line 86:       - SUPABASE_DATABASE_URL
+Line 98:   functionsDirectory: /opt/build/repo/netlify/functions
+Line 99:   redirects:
+Line 100:     - force: true
+Line 101:       from: /api/contact
+Line 102:       status: 200
+Line 103:       to: /.netlify/functions/contact
+Line 104:     - from: /*
+Line 105:       status: 200
+Line 106:       to: /index.html
+Line 107:   redirectsOrigin: config
+Line 108: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 109: Failing build: Failed to build site
+Line 110: Finished processing build request in 1m20.294s

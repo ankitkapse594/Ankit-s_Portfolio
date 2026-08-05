@@ -1,0 +1,5 @@
+# Route contact API to Netlify Function
+/api/contact /.netlify/functions/contact 200
+
+# SPA fallback – must be last
+/* /index.html 200

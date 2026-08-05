@@ -1,0 +1,69 @@
+11:58:44 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+11:58:44 PM: Netlify Build                                                 
+11:58:44 PM: ────────────────────────────────────────────────────────────────
+11:58:44 PM: ​
+11:58:44 PM: ❯ Version
+11:58:44 PM:   @netlify/build 36.1.5
+11:58:44 PM: ​
+11:58:44 PM: ❯ Flags
+11:58:44 PM:   accountId: 69bcd84df19dc7a832d72b5d
+11:58:44 PM:   baseRelDir: true
+11:58:44 PM:   buildId: 6a73808a74c3f500086b3b42
+11:58:44 PM:   deployId: 6a73808a74c3f500086b3b44
+11:58:44 PM: ​
+11:58:44 PM: ❯ Current directory
+11:58:44 PM:   /opt/build/repo
+11:58:44 PM: ​
+11:58:44 PM: ❯ Config file
+11:58:44 PM:   /opt/build/repo/netlify.toml
+11:58:44 PM: ​
+11:58:44 PM: ❯ Context
+11:58:44 PM:   production
+11:58:44 PM: ​
+11:58:44 PM: build.command from netlify.toml                               
+11:58:44 PM: ────────────────────────────────────────────────────────────────
+11:58:44 PM: ​
+11:58:44 PM: $ ./node_modules/.bin/vite build
+11:58:44 PM: bash: line 1: ./node_modules/.bin/vite: No such file or directory
+11:58:44 PM: ​
+11:58:44 PM: "build.command" failed                                        
+11:58:44 PM: ────────────────────────────────────────────────────────────────
+11:58:44 PM: ​
+11:58:44 PM:   Error message
+11:58:44 PM:   Command failed with exit code 127: ./node_modules/.bin/vite build (https://ntl.fyi/exit-code-127)
+11:58:44 PM: ​
+11:58:44 PM:   Error location
+11:58:44 PM:   In build.command from netlify.toml:
+11:58:44 PM:   ./node_modules/.bin/vite build
+11:58:44 PM: ​
+11:58:44 PM:   Resolved config
+11:58:44 PM:   build:
+11:58:44 PM:     command: ./node_modules/.bin/vite build
+11:58:44 PM:     commandOrigin: config
+11:58:44 PM:     environment:
+11:58:44 PM:       - SUPABASE_ANON_KEY
+11:58:44 PM:       - SUPABASE_DATABASE_URL
+11:58:44 PM:       - SUPABASE_JWT_SECRET
+11:58:44 PM:       - SUPABASE_SERVICE_ROLE_KEY
+11:58:44 PM:       - NODE_VERSION
+11:58:44 PM:     publish: /opt/build/repo/dist/public
+11:58:44 PM:     publishOrigin: config
+11:58:44 PM:   functions:
+11:58:44 PM:     "*":
+11:58:44 PM:       external_node_modules:
+11:58:44 PM:         - pg
+11:58:44 PM:         - pg-native
+11:58:44 PM:       node_bundler: esbuild
+11:58:44 PM:   functionsDirectory: /opt/build/repo/netlify/functions
+11:58:44 PM:   redirects:
+11:58:44 PM:     - force: true
+11:58:44 PM:       from: /api/contact
+11:58:44 PM:       status: 200
+11:58:44 PM:       to: /.netlify/functions/contact
+11:58:44 PM:     - from: /*
+11:58:44 PM:       status: 200
+11:58:44 PM:       to: /index.html
+11:58:44 PM:   redirectsOrigin: config
+11:58:44 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+11:58:44 PM: Failing build: Failed to build site
+11:58:45 PM: Finished processing build request in 1m20.294s
