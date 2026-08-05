@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { createClient } from "@supabase/supabase-js";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -35,6 +36,24 @@ export const handler = async (event: {
     const body = JSON.parse(event.body || "{}");
     const parsed = contactSchema.parse(body);
 
+    // Save to Supabase
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_ANON_KEY;
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey);
+        const { error } = await supabase.from("contact_messages").insert({
+          name: parsed.name,
+          email: parsed.email,
+          message: parsed.message,
+        });
+        if (error) console.error("Supabase insert error:", error.message);
+      } catch (dbErr) {
+        console.error("Supabase error (non-fatal):", dbErr);
+      }
+    }
+
+    // Forward via FormSubmit
     try {
       const emailRes = await fetch(
         `https://formsubmit.co/ajax/${CONTACT_EMAIL}`,
@@ -54,7 +73,6 @@ export const handler = async (event: {
           }),
         }
       );
-
       const result = await emailRes.json().catch(() => ({}));
       console.log("FormSubmit response:", emailRes.status, result);
     } catch (emailErr) {
