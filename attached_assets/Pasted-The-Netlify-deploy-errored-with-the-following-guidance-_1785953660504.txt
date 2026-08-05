@@ -1,0 +1,56 @@
+The Netlify deploy errored, with the following guidance provided:
+
+The logs are truncated and don't show the full build output. However, looking at the repo's [`package.json`](https://github.com/ankitkapse594/Ankit-s_Portfolio/blob/main/package.json) and [`vite.config.js`](https://github.com/ankitkapse594/Ankit-s_Portfolio/blob/main/vite.config.js), the build fails at [line 18](#L18) with a non-zero exit code.
+
+The most likely cause is that the project has no `package.json` or the dependencies aren't properly installed before `npx vite build` runs. Looking at the repo, there is no `package.json` at the root — this is a plain HTML/CSS/JS portfolio with no build tooling configured, so running `npx vite build` will fail because Vite has no entry point configured.
+
+**Solution:**
+
+Since this appears to be a static HTML site with no Vite configuration, you should change the build settings in Netlify to not use a build command at all and just publish the directory directly.
+
+1. In your Netlify site settings, set the **Build command** to blank (empty) or remove `npx vite build`.
+2. Set the **Publish directory** to `.` (the root of the repo).
+
+Alternatively, if you do want to use Vite, you'll need to add a proper `package.json` and `vite.config.js` to your repo:
+
+```bash
+npm init -y
+npm install --save-dev vite
+```
+
+Then add a `vite.config.js`:
+
+```js
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  root: '.',
+  build: {
+    outDir: 'dist',
+  },
+});
+```
+
+And update your Netlify **Publish directory** to `dist`.
+
+The relevant error logs are:
+
+Line 0: build-image version: 969defd95f3977f8de9cb1f48802a7e6f3d8c0b3 (noble-new-builds)
+Line 1: buildbot version: b34371363d3ca30c2d1b8c0c23cb261247d6f156
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/ankitkapse594/Ankit-s_Portfolio
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Custom build command detected. Proceeding with the specified command: 'npx vite build'
+Line 9: Installing dependencies
+Line 10: mise ~/.config/mise/config.toml tools: python@3.14.3
+Line 11: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+Line 12: mise ~/.config/mise/config.toml tools: go@1.26.2
+Line 13: v20.20.2 is already installed.
+Line 14: Now using node v20.20.2 (npm v10.8.2)
+Line 15: Enabling Node.js Corepack
+Line 16: No npm workspaces detected
+Line 17: Installing npm packages using npm version 10.8.2
+Line 18: Failed during stage 'building site': Build script returned non-zero exit code: 2
