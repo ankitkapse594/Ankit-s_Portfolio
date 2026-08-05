@@ -1,0 +1,130 @@
+The Netlify deploy errored, with the following guidance provided:
+
+The build fails at [lines 69-89](#L69-L89) because the Netlify Function bundler cannot resolve `drizzle-orm/pg-core` and `drizzle-zod` when bundling `netlify/functions/contact.ts` (which imports `shared/schema.ts`).
+
+**Diagnosis:** The packages `drizzle-orm` and `drizzle-zod` are either missing from `package.json` or were not installed correctly (note the npm error at [line 26](#L26) suggesting the install may not have completed cleanly).
+
+**Solution:**
+
+1. **First, verify that `drizzle-orm` and `drizzle-zod` are listed in your [`package.json`](https://github.com/ankitkapse594/Ankit-s_Portfolio/blob/main/package.json)** under `dependencies` (not just `devDependencies`), since Netlify Functions require runtime dependencies to be in `dependencies`.
+
+2. If they are missing, add them:
+
+```bash
+npm install drizzle-orm drizzle-zod
+```
+
+3. If they are already present in `package.json`, the npm install error at [line 26](#L26) (`Exit handler never called`) may have caused them to not install properly. Try clearing the Netlify build cache and redeploying.
+
+4. If the packages are confirmed to be in `package.json` but the error persists, you can mark them as external in your Netlify Functions bundler config by adding a `netlify.toml` entry:
+
+```toml
+[functions]
+  external_node_modules = ["drizzle-orm", "drizzle-zod"]
+```
+
+The relevant error logs are:
+
+Line 0: build-image version: 969defd95f3977f8de9cb1f48802a7e6f3d8c0b3 (noble-new-builds)
+Line 1: buildbot version: b34371363d3ca30c2d1b8c0c23cb261247d6f156
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/ankitkapse594/Ankit-s_Portfolio
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Installing dependencies
+Line 9: mise ~/.config/mise/config.toml tools: python@3.14.3
+Line 10: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+Line 11: mise ~/.config/mise/config.toml tools: go@1.26.2
+Line 12: Attempting Node.js version '20' from .nvmrc
+Line 13: v20.20.2 is already installed.
+Line 16: No npm workspaces detected
+Line 17: npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+Line 18: npm warn config `--include=optional` to include them.
+Line 19: npm warn config
+Line 20: npm warn config       Default value does install optional deps unless otherwise omitted.
+Line 21: Installing npm packages using npm version 10.8.2
+Line 22: npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+Line 23: npm warn config `--include=optional` to include them.
+Line 24: npm warn config
+Line 25: npm warn config       Default value does install optional deps unless otherwise omitted.
+Line 26: npm error Exit handler never called!
+Line 27: npm error This is an error with npm itself. Please report this error at:
+Line 28: npm error   <https://github.com/npm/cli/issues>
+Line 29: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2026-08-05T18_31_34_465Z-debug-0.log
+Line 30: npm packages installed
+Line 31: npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+Line 32: npm warn config `--include=optional` to include them.
+Line 33: npm warn config
+Line 34: npm warn config       Default value does install optional deps unless otherwise omitted.
+Line 35: Successfully installed dependencies
+Line 36: Detected 1 framework(s)
+Line 37: "vite" at version "7.3.0"
+Line 38: Starting build script
+Line 39: Section completed: initializing
+Line 40: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 41: ​
+Line 42: Netlify Build                                                 
+Line 43: ────────────────────────────────────────────────────────────────
+Line 44: ​
+Line 45: ❯ Version
+Line 46:   @netlify/build 36.1.5
+Line 47: ​
+Line 48: ❯ Flags
+Line 49:   accountId: 69bcd84df19dc7a832d72b5d
+Line 50:   baseRelDir: true
+Line 59: ​
+Line 60: ❯ Context
+Line 61:   production
+Line 62: ​
+Line 63: Functions bundling                                            
+Line 64: ────────────────────────────────────────────────────────────────
+Line 65: ​
+Line 66: Packaging Functions from netlify/functions directory:
+Line 67:  - contact.ts
+Line 68: ​
+Line 69: ✘ [ERROR] Could not resolve "drizzle-orm/pg-core"
+Line 70:     shared/schema.ts:1:49:
+Line 71:       1 │ ...rt { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
+Line 72:         ╵                                                 ~~~~~~~~~~~~~~~~~~~~~
+Line 73:   You can mark the path "drizzle-orm/pg-core" as external to exclude it from the bundle, which will remove this error and leave 
+Line 74: ✘ [ERROR] Could not resolve "drizzle-zod"
+Line 75:     shared/schema.ts:2:35:
+Line 76:       2 │ import { createInsertSchema } from "drizzle-zod";
+Line 77:         ╵                                    ~~~~~~~~~~~~~
+Line 78:   You can mark the path "drizzle-zod" as external to exclude it from the bundle, which will remove this error and leave the unre
+Line 79: ​
+Line 80: Dependencies installation error                               
+Line 81: ────────────────────────────────────────────────────────────────
+Line 82: ​
+Line 83:   Error message
+Line 84:   A Netlify Function failed to require one of its dependencies.
+Line 85:   Please make sure it is present in the site's top-level "package.json".
+Line 86: ​
+Line 87:   Build failed with 2 errors:
+Line 88:   shared/schema.ts:1:49: ERROR: Could not resolve "drizzle-orm/pg-core"
+Line 89:   shared/schema.ts:2:35: ERROR: Could not resolve "drizzle-zod"
+Line 90: ​
+Line 91:   Resolved config
+Line 92:   build:
+Line 93:     commandOrigin: ui
+Line 94:     environment:
+Line 95:       - SUPABASE_ANON_KEY
+Line 96:       - SUPABASE_DATABASE_URL
+Line 97:       - SUPABASE_JWT_SECRET
+Line 98:       - SUPABASE_SERVICE_ROLE_KEY
+Line 99:       - NODE_VERSION
+Line 111:       status: 200
+Line 112:       to: /.netlify/functions/contact
+Line 113:     - force: true
+Line 114:       from: /api/contact
+Line 115:       status: 200
+Line 116:       to: /.netlify/functions/contact
+Line 117:     - from: /*
+Line 118:       status: 200
+Line 119:       to: /index.html
+Line 120:   redirectsOrigin: config
+Line 121: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 122: Failing build: Failed to build site
+Line 123: Finished processing build request in 1m18.861s

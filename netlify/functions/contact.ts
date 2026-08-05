@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { insertMessageSchema } from "../../shared/schema";
+
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required").max(100),
+  email: z.string().email("Invalid email address").max(200),
+  message: z.string().min(10, "Message must be at least 10 characters").max(5000),
+});
 
 const HEADERS = {
   "Content-Type": "application/json",
@@ -28,11 +33,8 @@ export const handler = async (event: {
 
   try {
     const body = JSON.parse(event.body || "{}");
-    const parsed = insertMessageSchema.parse(body);
+    const parsed = contactSchema.parse(body);
 
-    // Forward to FormSubmit.co — sends an email to CONTACT_EMAIL
-    // NOTE: First submission triggers an activation email to CONTACT_EMAIL.
-    // Click the link in that email once, then all future submissions will arrive normally.
     try {
       const emailRes = await fetch(
         `https://formsubmit.co/ajax/${CONTACT_EMAIL}`,
@@ -56,7 +58,6 @@ export const handler = async (event: {
       const result = await emailRes.json().catch(() => ({}));
       console.log("FormSubmit response:", emailRes.status, result);
     } catch (emailErr) {
-      // Log but don't fail — visitor should not see an error for email delivery issues
       console.error("FormSubmit error (non-fatal):", emailErr);
     }
 
