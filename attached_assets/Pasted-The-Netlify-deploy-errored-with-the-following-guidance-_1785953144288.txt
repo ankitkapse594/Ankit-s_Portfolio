@@ -1,0 +1,115 @@
+The Netlify deploy errored, with the following guidance provided:
+
+The build fails at [line 57](#L57) with `vite: not found`, caused by `npm install` failing silently ([line 53](#L53)) — so `vite` is never installed, and `npx vite build` cannot find it.
+
+The npm error (`Exit handler never called!`) at [lines 53–55](#L53-L55) suggests a corrupted or incompatible `package-lock.json`, or a `package.json` issue causing npm to crash before installing packages.
+
+**Solution:**
+
+1. Check that `vite` is listed as a dependency (or devDependency) in [`package.json`](https://github.com/ankitkapse594/Ankit-s_Portfolio/blob/main/package.json). It should look like:
+   ```json
+   {
+     "devDependencies": {
+       "vite": "^7.3.0"
+     }
+   }
+   ```
+
+2. The `npm install` crash is likely due to a corrupted `package-lock.json`. Try deleting it locally and regenerating it:
+   ```bash
+   rm package-lock.json
+   npm install
+   git add package-lock.json
+   git commit -m "Regenerate package-lock.json"
+   git push
+   ```
+
+3. If the issue persists, try clearing Netlify's cache by triggering a new deploy with **"Clear cache and deploy site"** from the Netlify dashboard, as stale cache can sometimes interfere.
+
+4. Optionally, simplify the build command in `netlify.toml` — since Netlify already runs `npm install` during dependency installation, you can change the build command to just:
+   ```toml
+   [build]
+     command = "npx vite build"
+   ```
+   This avoids running `npm install` twice and reduces the chance of the npm crash affecting the build step.
+
+The relevant error logs are:
+
+Line 0: build-image version: 969defd95f3977f8de9cb1f48802a7e6f3d8c0b3 (noble-new-builds)
+Line 1: buildbot version: b34371363d3ca30c2d1b8c0c23cb261247d6f156
+Line 2: Fetching cached dependencies
+Line 3: Failed to fetch cache, continuing with build
+Line 4: Starting to prepare the repo for build
+Line 5: No cached dependencies found. Cloning fresh repo
+Line 6: git clone --filter=blob:none https://github.com/ankitkapse594/Ankit-s_Portfolio
+Line 7: Preparing Git Reference refs/heads/main
+Line 8: Installing dependencies
+Line 9: mise ~/.config/mise/config.toml tools: python@3.14.3
+Line 10: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+Line 11: mise ~/.config/mise/config.toml tools: go@1.26.2
+Line 12: v20.20.2 is already installed.
+Line 13: Now using node v20.20.2 (npm v10.8.2)
+Line 14: Enabling Node.js Corepack
+Line 15: No npm workspaces detected
+Line 16: Installing npm packages using npm version 10.8.2
+Line 17: npm error Exit handler never called!
+Line 18: npm error This is an error with npm itself. Please report this error at:
+Line 19: npm error   <https://github.com/npm/cli/issues>
+Line 20: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2026-08-05T18_01_58_891Z-debug-0.log
+Line 21: npm packages installed
+Line 22: Successfully installed dependencies
+Line 23: Detected 1 framework(s)
+Line 24: "vite" at version "7.3.0"
+Line 25: Starting build script
+Line 26: Section completed: initializing
+Line 27: ​
+Line 28: Netlify Build                                                 
+Line 29: ────────────────────────────────────────────────────────────────
+Line 30: ​
+Line 43: ❯ Config file
+Line 44:   /opt/build/repo/netlify.toml
+Line 45: ​
+Line 46: ❯ Context
+Line 47:   production
+Line 48: ​
+Line 49: build.command from netlify.toml                               
+Line 50: ────────────────────────────────────────────────────────────────
+Line 51: ​
+Line 52: $ npm install && npx vite build
+Line 53: npm error Exit handler never called!
+Line 54: npm error This is an error with npm itself. Please report this error at:
+Line 55: npm error   <https://github.com/npm/cli/issues>
+Line 56: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2026-08-05T18_03_13_059Z-debug-0.log
+Line 57: sh: 1: vite: not found
+Line 58: ​
+Line 59: "build.command" failed                                        
+Line 60: ────────────────────────────────────────────────────────────────
+Line 61: ​
+Line 62:   Error message
+Line 63:   Command failed with exit code 127: npm install && npx vite build
+Line 64: ​
+Line 65:   Error location
+Line 66:   In build.command from netlify.toml:
+Line 67:   npm install && npx vite build
+Line 68: ​
+Line 69:   Resolved config
+Line 70:   build:
+Line 71:     command: npm install && npx vite build
+Line 72:     commandOrigin: config
+Line 73:     environment:
+Line 74:       - SUPABASE_ANON_KEY
+Line 75:       - SUPABASE_DATABASE_URL
+Line 87:   functionsDirectory: /opt/build/repo/netlify/functions
+Line 88:   redirects:
+Line 89:     - force: true
+Line 90:       from: /api/contact
+Line 91:       status: 200
+Line 92:       to: /.netlify/functions/contact
+Line 93:     - from: /*
+Line 94:       status: 200
+Line 95:       to: /index.html
+Line 96:   redirectsOrigin: config
+Line 97: Failed during stage 'building site': Build script returned non-zero exit code: 2
+Line 98: Build failed due to a user error: Build script returned non-zero exit code: 2
+Line 99: Failing build: Failed to build site
+Line 100: Finished processing build request in 2m31.923s
