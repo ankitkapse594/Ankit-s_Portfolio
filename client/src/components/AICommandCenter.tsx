@@ -164,8 +164,8 @@ function TerminalTab({ history, input, setInput, onKeyDown, scrollRef, inputRef 
   input: string;
   setInput: (v: string) => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
-  scrollRef: React.RefObject<HTMLDivElement | null>;
-  inputRef: React.RefObject<HTMLInputElement | null>;
+  scrollRef: React.RefObject<HTMLDivElement>;
+  inputRef: React.RefObject<HTMLInputElement>;
 }) {
   return (
     <motion.div
