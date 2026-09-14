@@ -10,7 +10,7 @@ export function HeroPhotoBackground() {
   const imageOpacity = useTransform(
     scrollY,
     [0, 180, 700, 1200],
-    [0.08, 0.3, 0.2, 0.12]
+    [0.2, 0.52, 0.38, 0.24]
   );
 
   return (
@@ -29,7 +29,7 @@ export function HeroPhotoBackground() {
         <img
           src={profilePhoto}
           alt=""
-          className="h-full w-full object-cover object-[50%_76%] blur-[1px] saturate-[0.72] contrast-[0.92]"
+          className="h-full w-full object-cover object-[50%_76%] blur-[0.5px] saturate-[0.88] contrast-[1.02]"
         />
       </div>
 
