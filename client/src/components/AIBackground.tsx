@@ -16,6 +16,25 @@ export function AIBackground() {
     resize();
     window.addEventListener("resize", resize);
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mouse = { x: 0.5, y: 0.5 };
+    const smoothMouse = { x: 0.5, y: 0.5 };
+    let scrollY = window.scrollY;
+    let smoothScrollY = scrollY;
+
+    const onMouseMove = (event: MouseEvent) => {
+      mouse.x = event.clientX / Math.max(window.innerWidth, 1);
+      mouse.y = event.clientY / Math.max(window.innerHeight, 1);
+    };
+    const onScroll = () => {
+      scrollY = window.scrollY;
+    };
+
+    if (!reducedMotion) {
+      window.addEventListener("mousemove", onMouseMove, { passive: true });
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
     type Node = { x: number; y: number; vx: number; vy: number; pulse: number };
     type Particle = { x: number; y: number; vy: number; alpha: number; size: number };
     type Beam = { x: number; speed: number; alpha: number; width: number };
@@ -45,27 +64,45 @@ export function AIBackground() {
 
     let animId: number;
 
+    const wrap = (value: number, size: number) => ((value % size) + size) % size;
+
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      if (!reducedMotion) {
+        smoothMouse.x += (mouse.x - smoothMouse.x) * 0.04;
+        smoothMouse.y += (mouse.y - smoothMouse.y) * 0.04;
+        smoothScrollY += (scrollY - smoothScrollY) * 0.06;
+      }
+
+      const pointerOffsetX = (smoothMouse.x - 0.5) * 26;
+      const pointerOffsetY = (smoothMouse.y - 0.5) * 18;
+      const scrollOffset = -smoothScrollY * 0.07;
+
       nodes.forEach((n) => {
-        n.x += n.vx;
-        n.y += n.vy;
-        n.pulse += 0.018;
+        if (!reducedMotion) {
+          n.x += n.vx;
+          n.y += n.vy;
+          n.pulse += 0.018;
+        }
         if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
         if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
       });
 
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
+          const nodeAX = nodes[i].x + pointerOffsetX + scrollOffset * 0.12;
+          const nodeAY = wrap(nodes[i].y + pointerOffsetY + scrollOffset, canvas.height);
+          const nodeBX = nodes[j].x + pointerOffsetX + scrollOffset * 0.12;
+          const nodeBY = wrap(nodes[j].y + pointerOffsetY + scrollOffset, canvas.height);
+          const dx = nodeAX - nodeBX;
+          const dy = nodeAY - nodeBY;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 150) {
             const alpha = (1 - dist / 150) * 0.2;
             ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.moveTo(nodeAX, nodeAY);
+            ctx.lineTo(nodeBX, nodeBY);
             ctx.strokeStyle = `rgba(0, 210, 255, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
@@ -75,50 +112,57 @@ export function AIBackground() {
 
       nodes.forEach((n) => {
         const glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        const nodeX = n.x + pointerOffsetX + scrollOffset * 0.12;
+        const nodeY = wrap(n.y + pointerOffsetY + scrollOffset, canvas.height);
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 1.2 + glow * 0.8, 0, Math.PI * 2);
+        ctx.arc(nodeX, nodeY, 1.2 + glow * 0.8, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0, 220, 255, ${0.35 + glow * 0.25})`;
         ctx.fill();
       });
 
       particles.forEach((p) => {
-        p.y += p.vy;
+        if (!reducedMotion) p.y += p.vy;
         if (p.y < 0) {
           p.y = canvas.height;
           p.x = Math.random() * canvas.width;
         }
+        const particleX = p.x + pointerOffsetX * 0.55;
+        const particleY = wrap(p.y + pointerOffsetY * 0.4 + scrollOffset * 0.45, canvas.height);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(particleX, particleY, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(160, 90, 255, ${p.alpha})`;
         ctx.fill();
       });
 
       beams.forEach((b) => {
-        b.x += b.speed;
+        if (!reducedMotion) b.x += b.speed;
         if (b.x > canvas.width + b.width) b.x = -b.width;
+        const beamX = b.x + pointerOffsetX * 0.25;
         const slant = canvas.height * 0.25;
-        const grad = ctx.createLinearGradient(b.x - b.width / 2, 0, b.x + b.width / 2, 0);
+        const grad = ctx.createLinearGradient(beamX - b.width / 2, 0, beamX + b.width / 2, 0);
         grad.addColorStop(0, `rgba(0, 255, 255, 0)`);
         grad.addColorStop(0.5, `rgba(0, 255, 255, ${b.alpha})`);
         grad.addColorStop(1, `rgba(0, 255, 255, 0)`);
         ctx.beginPath();
-        ctx.moveTo(b.x - b.width / 2, 0);
-        ctx.lineTo(b.x + b.width / 2, 0);
-        ctx.lineTo(b.x + b.width / 2 + slant, canvas.height);
-        ctx.lineTo(b.x - b.width / 2 + slant, canvas.height);
+        ctx.moveTo(beamX - b.width / 2, 0);
+        ctx.lineTo(beamX + b.width / 2, 0);
+        ctx.lineTo(beamX + b.width / 2 + slant, canvas.height);
+        ctx.lineTo(beamX - b.width / 2 + slant, canvas.height);
         ctx.closePath();
         ctx.fillStyle = grad;
         ctx.fill();
       });
 
-      animId = requestAnimationFrame(draw);
+      if (!reducedMotion) animId = requestAnimationFrame(draw);
     };
 
     draw();
 
     return () => {
-      cancelAnimationFrame(animId);
+      if (!reducedMotion) cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -126,7 +170,8 @@ export function AIBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.55 }}
+      style={{ opacity: 0.5 }}
+      aria-hidden="true"
     />
   );
 }
