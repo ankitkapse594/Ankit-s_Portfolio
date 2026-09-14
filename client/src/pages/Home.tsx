@@ -31,7 +31,7 @@ import resumePdf from "@assets/Ankit_Kapse_Resume_final_02_1784046625634.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { AIBackground } from "@/components/AIBackground";
 import { LoadingScreen } from "@/components/LoadingScreen";
-import { AICommandCenter } from "@/components/AICommandCenter";
+import { ProfileHeroVisual } from "@/components/ProfileHeroVisual";
 import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
@@ -274,7 +274,7 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="order-1 lg:order-2 flex justify-center relative"
           >
-            <AICommandCenter />
+            <ProfileHeroVisual />
           </motion.div>
         </div>
 
