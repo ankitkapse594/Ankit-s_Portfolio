@@ -31,7 +31,8 @@ import resumePdf from "@assets/Ankit_Kapse_Resume_final_02_1784046625634.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { AIBackground } from "@/components/AIBackground";
 import { LoadingScreen } from "@/components/LoadingScreen";
-import { ProfileHeroVisual } from "@/components/ProfileHeroVisual";
+import { AICommandCenter } from "@/components/AICommandCenter";
+import { HeroPhotoBackground } from "@/components/HeroPhotoBackground";
 import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
@@ -181,6 +182,8 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center pt-20 z-10 overflow-hidden">
+        <HeroPhotoBackground />
+
         {/* 3D Floating Geometry */}
         <FloatingGeometry />
 
@@ -196,7 +199,7 @@ export default function Home() {
           className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]" 
         />
 
-        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-20 mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -274,7 +277,7 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="order-1 lg:order-2 flex justify-center relative"
           >
-            <ProfileHeroVisual />
+            <AICommandCenter />
           </motion.div>
         </div>
 
