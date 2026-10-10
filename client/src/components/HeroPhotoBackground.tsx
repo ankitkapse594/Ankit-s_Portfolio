@@ -10,32 +10,32 @@ export function HeroPhotoBackground() {
   const imageOpacity = useTransform(
     scrollY,
     [0, 180, 700, 1200],
-    [0.2, 0.52, 0.38, 0.24]
+    [0.48, 0.82, 0.68, 0.5]
   );
 
   return (
     <motion.div
       style={{ y: imageY, opacity: imageOpacity }}
-      className="pointer-events-none absolute inset-x-[-8%] bottom-[-14%] z-0 h-[88%] overflow-hidden sm:inset-x-[-3%] sm:bottom-[-10%] lg:inset-x-[4%] lg:bottom-[-8%]"
+      className="pointer-events-none absolute inset-x-[-8%] bottom-[-5%] z-0 h-[100%] overflow-hidden sm:inset-x-[-3%] sm:bottom-[-4%] lg:inset-x-[4%] lg:bottom-[-3%]"
       aria-hidden="true"
     >
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          maskImage: "linear-gradient(to top, black 0%, black 45%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to top, black 0%, black 45%, transparent 100%)",
+          maskImage: "linear-gradient(to top, black 0%, black 62%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to top, black 0%, black 62%, transparent 100%)",
         }}
       >
         <img
           src={profilePhoto}
           alt=""
-          className="h-full w-full object-cover object-[50%_76%] blur-[0.5px] saturate-[0.88] contrast-[1.02]"
+          className="h-full w-full object-cover object-[50%_74%] brightness-[1.08] saturate-[0.98] contrast-[1.04]"
         />
       </div>
 
       {/* Fade the photo into the existing background at the top and sides. */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/35 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_24%,hsl(var(--background)/0.8)_88%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_18%,hsl(var(--background)/0.45)_86%)]" />
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/10 to-transparent" />
     </motion.div>
   );
