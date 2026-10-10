@@ -46,6 +46,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
   const [eggToast, setEggToast] = useState<string | null>(null);
+  const completeLoading = useCallback(() => setIsLoading(false), []);
 
   const showToast = useCallback((msg: string) => {
     setEggToast(msg);
@@ -168,7 +169,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30">
-      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      {isLoading && <LoadingScreen onComplete={completeLoading} />}
       {/* Global overlays */}
       <CustomCursor />
       <ScrollProgress />
