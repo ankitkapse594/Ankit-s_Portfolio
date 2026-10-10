@@ -31,7 +31,6 @@ import resumePdf from "@assets/Ankit_Kapse_Resume_final_02_1784046625634.pdf";
 import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { AIBackground } from "@/components/AIBackground";
 import { LoadingScreen } from "@/components/LoadingScreen";
-import { AICommandCenter } from "@/components/AICommandCenter";
 import { HeroPhotoBackground } from "@/components/HeroPhotoBackground";
 import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
@@ -60,7 +59,6 @@ export default function Home() {
       if (e.shiftKey) {
         if (e.key === "A") { showToast("🤖 AI MODE ACTIVATED — Full neural experience"); return; }
         if (e.key === "G") { showToast("💻 DEVELOPER MODE — Stack: React · Express · PostgreSQL"); return; }
-        if (e.key === "T") { showToast("⌨️ TERMINAL MODE — Try the terminal in the command center"); return; }
         if (e.key === "N") { showToast("🧠 NEURAL NETWORK VIEW — The background is alive"); return; }
       }
       keys.push(e.key);
@@ -272,14 +270,6 @@ export default function Home() {
             </div>
           </motion.div>
           
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8, rotateY: 30 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="order-1 lg:order-2 flex justify-center relative"
-          >
-            <AICommandCenter />
-          </motion.div>
         </div>
 
         <motion.div 
