@@ -29,30 +29,33 @@ export function Navigation() {
     setIsOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
     }
   };
 
   return (
     <nav
+      aria-label="Main navigation"
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-white/10 py-4"
-          : "bg-transparent border-transparent py-6"
+          ? "bg-background/80 backdrop-blur-md border-white/10 py-2 md:py-4"
+          : "bg-transparent border-transparent py-3 md:py-6"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <a 
           href="#hero" 
           onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }}
-          className="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+          className="text-lg sm:text-xl md:text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
         >
           ANKIT<span className="text-white">'S PORTFOLIO</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-8">
           {links.map((link) => (
             <button
               key={link.name}
@@ -74,7 +77,11 @@ export function Navigation() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground"
+          type="button"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+          className="lg:hidden text-foreground rounded-md p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X /> : <Menu />}
@@ -88,7 +95,8 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-white/10 overflow-hidden"
+            id="mobile-navigation"
+            className="lg:hidden bg-background border-b border-white/10 overflow-hidden"
           >
             <div className="flex flex-col p-4 gap-4">
               {links.map((link) => (

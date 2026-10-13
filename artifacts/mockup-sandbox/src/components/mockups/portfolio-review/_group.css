@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;700&display=swap");
+
+.portfolio-review {
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Exo 2", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --background: 230 35% 7%;
+  --foreground: 210 40% 98%;
+  --primary: 190 100% 50%;
+  --primary-foreground: 230 35% 7%;
+  --secondary: 260 100% 65%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 228 20% 15%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 320 100% 55%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 228 20% 20%;
+  --input: 228 20% 20%;
+  --ring: 190 100% 50%;
+  --card: 228 25% 10%;
+  --card-foreground: 210 40% 98%;
+  --radius: 0.75rem;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.portfolio-review h1,
+.portfolio-review h2,
+.portfolio-review h3,
+.portfolio-review h4,
+.portfolio-review h5,
+.portfolio-review h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.portfolio-review .font-display {
+  font-family: var(--font-display);
+}
+
+.portfolio-review .font-body {
+  font-family: var(--font-body);
+}
+
+.portfolio-review .font-mono {
+  font-family: var(--font-mono);
+}
+
+.portfolio-review .glass-panel {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgb(255 255 255 / 5%);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.portfolio-review .neon-border {
+  border: 1px solid hsl(var(--primary) / 0.3);
+  box-shadow: 0 0 15px rgb(0 255 255 / 0.1);
+}
+
+.portfolio-review .neon-text {
+  text-shadow: 0 0 10px rgb(0 255 255 / 0.5);
+}
+
+.portfolio-review .neon-text-secondary {
+  text-shadow: 0 0 10px rgb(157 78 221 / 0.5);
+}
+
+.portfolio-review .bg-grid {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 3%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 3%) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+.portfolio-review .animate-gradient-x {
+  background-size: 200% 200%;
+  animation: portfolio-gradient-x 4s ease infinite;
+}
+
+.portfolio-review ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.portfolio-review ::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+.portfolio-review ::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+.portfolio-review ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+@keyframes portfolio-gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-review *,
+  .portfolio-review *::before,
+  .portfolio-review *::after {
+    cursor: none !important;
+  }
+}

@@ -50,8 +50,22 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0,
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
+        onKeyDown={(event) => {
+          if (
+            onClick &&
+            event.target === event.currentTarget &&
+            (event.key === "Enter" || event.key === " ")
+          ) {
+            event.preventDefault();
+            onClick();
+          }
+        }}
+        role={onClick ? "button" : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        aria-label={onClick ? `View details for ${title}` : undefined}
+        aria-haspopup={onClick ? "dialog" : undefined}
         style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
-        className="relative h-full cursor-pointer"
+        className="relative h-full cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         data-testid={`card-project-${title.replace(/\s+/g, "-").toLowerCase()}`}
       >
         {/* Glow backing */}
@@ -110,7 +124,7 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0,
                 </a>
               )}
               {/* Expand hint */}
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity text-primary/60">
+              <div className="opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity text-primary/60">
                 <Maximize2 size={15} />
               </div>
             </div>
@@ -139,8 +153,10 @@ export function ProjectCard({ title, description, tags, link, github, delay = 0,
           </div>
 
           {/* Click hint */}
-          <p className="text-[10px] font-mono text-muted-foreground/40 mt-4 text-right opacity-0 group-hover:opacity-100 transition-opacity">
-            click to explore →
+          <p className="text-[10px] font-mono text-muted-foreground/65 mt-4 text-right opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+            {typeof window !== "undefined" && window.matchMedia("(hover: none)").matches
+              ? "tap to explore"
+              : "click to explore"}
           </p>
         </div>
       </motion.div>

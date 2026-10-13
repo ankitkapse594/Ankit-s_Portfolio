@@ -36,11 +36,9 @@ import { ProjectModal, type ProjectData } from "@/components/ProjectModal";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { TypedSubtitle } from "@/components/TypedSubtitle";
-import { useScramble } from "@/hooks/use-scramble";
 
 export default function Home() {
   const contactMutation = useSubmitContact();
-  const scrambledName = useScramble("Ankit Kapse", 600, 30);
   const [activeProject, setActiveProject] = useState<ProjectData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
@@ -209,18 +207,18 @@ export default function Home() {
               <span className="text-primary font-mono text-sm tracking-wider">SYSTEM.INIT(READY)</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-4 leading-tight">
+            <h1 className="text-[clamp(2.5rem,9.5vw,3.5rem)] md:text-[clamp(3.375rem,5vw,4.5rem)] font-display font-bold mb-4 leading-[1.08]">
               Hello, I'm <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary animate-gradient-x font-mono">
-                {scrambledName}
+                Ankit Kapse
               </span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-muted-foreground font-light mb-8 font-mono h-8">
+            <h2 className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light mb-5 sm:mb-8 font-mono h-8">
               <TypedSubtitle />
             </h2>
             
-            <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-400 max-w-lg mb-7 sm:mb-10 leading-relaxed">
               A dedicated technology professional specialising in web portal development, AI solutions, and scalable platforms. Currently leading tech at Rajsanyog.
             </p>
             
@@ -283,18 +281,18 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-black/20 relative z-10">
+      <section id="about" className="scroll-mt-24 py-14 md:py-20 bg-black/20 relative z-10">
         <div className="container mx-auto px-4 max-w-4xl">
           <SectionHeading title="About Me" subtitle="The Architect" />
           
-          <div className="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden">
+          <div className="glass-panel p-6 sm:p-8 md:p-12 rounded-3xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
             
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light text-center mb-6">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light text-center mb-6">
               I don't just write code — I build systems that <span className="text-white font-medium">scale, ship, and solve real problems</span>. Currently serving as <span className="text-primary font-medium">Technical Head at Rajsanyog</span>, I bring end-to-end experience in web platforms, AI/ML, and Cloud Computing & Virtualization. Skilled in <span className="text-white font-medium">Python, AWS, and full-stack development</span>, with proven leadership delivering cloud-based systems for real-world, client-facing projects.
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-8">
               {[
                 { label: "Location", value: "Nagpur, India" },
                 { label: "Degree", value: "B.Tech IT" },
@@ -312,11 +310,11 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 relative z-10">
+      <section id="experience" className="scroll-mt-24 py-14 md:py-20 relative z-10">
         <div className="container mx-auto px-4 max-w-5xl">
           <SectionHeading title="Experience" subtitle="Timeline" />
 
-          <div className="relative border-l border-white/10 ml-4 md:ml-10 space-y-12">
+          <div className="relative border-l border-white/10 ml-3 md:ml-10 space-y-8 md:space-y-12">
             {experiences.map((exp, idx) => (
               <motion.div 
                 key={idx}
@@ -324,12 +322,12 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}
-                className="relative pl-8 md:pl-12"
+                className="relative pl-7 sm:pl-8 md:pl-12"
                 data-testid={`card-experience-${idx}`}
               >
                 <div className="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,255,255,0.8)]" />
                 
-                <div className="glass-panel p-6 rounded-xl hover:border-primary/30 transition-colors group">
+                <div className="glass-panel p-5 sm:p-6 rounded-xl hover:border-primary/30 transition-colors group">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
                     <h3 className="text-xl font-display font-bold text-white group-hover:text-primary transition-colors">
                       {exp.role}
@@ -346,7 +344,7 @@ export default function Home() {
                   </div>
                   <ul className="space-y-2">
                     {exp.points.map((point, pIdx) => (
-                      <li key={pIdx} className="text-muted-foreground leading-relaxed text-sm flex gap-2">
+                      <li key={pIdx} className="text-muted-foreground leading-relaxed text-[15px] md:text-sm flex gap-2">
                         <span className="text-primary mt-1 shrink-0">▸</span>
                         {point}
                       </li>
@@ -360,11 +358,11 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-black/20 relative z-10">
+      <section id="projects" className="scroll-mt-24 py-14 md:py-20 bg-black/20 relative z-10">
         <div className="container mx-auto px-4">
           <SectionHeading title="Selected Works" subtitle="Portfolio" />
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-5 md:gap-8 max-w-5xl mx-auto">
             {projects.map((project, idx) => (
               <ProjectCard 
                 key={idx}
@@ -387,7 +385,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 relative z-10">
+      <section id="skills" className="scroll-mt-24 py-14 md:py-20 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeading title="Tech Stack" subtitle="Capabilities" />
           
@@ -443,7 +441,7 @@ export default function Home() {
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-20 bg-black/20 relative z-10">
+      <section id="certifications" className="scroll-mt-24 py-14 md:py-20 bg-black/20 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeading title="Certifications" subtitle="Achievements" />
           
@@ -502,11 +500,11 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-t from-black/80 to-transparent relative z-10">
+      <section id="contact" className="scroll-mt-24 py-14 md:py-20 bg-gradient-to-t from-black/80 to-transparent relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeading title="Get In Touch" subtitle="Connect" />
           
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -514,7 +512,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="glass-panel p-8 rounded-3xl h-full">
+              <div className="glass-panel p-6 sm:p-8 rounded-3xl h-full">
                 <h3 className="text-2xl font-display font-bold mb-6 text-white">Contact Information</h3>
                 <p className="text-muted-foreground mb-8">
                   I'm always open to hearing about new projects, opportunities, and collaborations in AI, data, and web development.
@@ -529,7 +527,7 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
                       <a 
                         href="mailto:ankitkapse594@gmail.com" 
-                        className="text-white hover:text-primary transition-colors"
+                        className="break-all text-white hover:text-primary transition-colors"
                         data-testid="link-email"
                       >
                         ankitkapse594@gmail.com
@@ -595,7 +593,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="glass-panel p-8 rounded-3xl border-t border-primary/20">
+              <div className="glass-panel p-6 sm:p-8 rounded-3xl border-t border-primary/20">
                 <h3 className="text-2xl font-display font-bold mb-6 text-white">Send Message</h3>
                 
                 <Form {...form}>
@@ -685,7 +683,7 @@ export default function Home() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
         <div className="container mx-auto px-4 py-14 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
 
             {/* Brand column */}
             <div className="space-y-4">
@@ -794,8 +792,10 @@ export default function Home() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 3.5 }}
         onClick={() => setIsRecruiterMode(r => !r)}
+        aria-expanded={isRecruiterMode}
+        aria-label={isRecruiterMode ? "Close recruiter quick view" : "Open recruiter quick view"}
         data-testid="button-recruiter-mode"
-        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-3 py-2 rounded-xl font-mono text-[10px] tracking-widest uppercase transition-all select-none"
+        className="fixed bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] left-3 md:bottom-6 md:left-6 z-50 flex min-h-11 items-center gap-2 px-3 py-2 rounded-xl font-mono text-[10px] tracking-widest uppercase transition-all select-none"
         style={{
           background: isRecruiterMode
             ? "rgba(0,220,255,0.15)"
@@ -827,13 +827,13 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.4 }}
-            className="fixed bottom-6 right-6 z-50 rounded-2xl p-4 font-mono"
+            className="fixed bottom-[calc(env(safe-area-inset-bottom)+3.9rem)] left-3 right-3 md:bottom-6 md:left-auto md:right-6 z-50 rounded-2xl p-4 font-mono"
             style={{
               background: "rgba(6,8,17,0.92)",
               border: "1px solid rgba(0,220,255,0.25)",
               backdropFilter: "blur(20px)",
               boxShadow: "0 0 40px rgba(0,220,255,0.08)",
-              maxWidth: "220px",
+              maxWidth: "min(220px, calc(100vw - 1.5rem))",
             }}
           >
             <p className="text-[9px] tracking-[0.2em] text-primary/60 uppercase mb-3">Quick View</p>

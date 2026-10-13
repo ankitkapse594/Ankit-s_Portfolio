@@ -16,21 +16,33 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    let prog = 0;
-    const interval = setInterval(() => {
-      prog += Math.random() * 2.8 + 1.2;
-      if (prog >= 100) {
-        prog = 100;
-        clearInterval(interval);
-        setTimeout(() => {
-          setVisible(false);
-          setTimeout(onComplete, 650);
-        }, 350);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setProgress(100);
+      setPhase(PHASES.length - 1);
+      setVisible(false);
+      onComplete();
+      return;
+    }
+
+    const duration = 450;
+    const startedAt = performance.now();
+    const interval = window.setInterval(() => {
+      const nextProgress = Math.min(((performance.now() - startedAt) / duration) * 100, 100);
+      setProgress(nextProgress);
+      setPhase(
+        Math.min(
+          Math.floor((nextProgress / 100) * (PHASES.length - 1)),
+          PHASES.length - 1,
+        ),
+      );
+
+      if (nextProgress >= 100) {
+        window.clearInterval(interval);
+        setVisible(false);
+        window.setTimeout(onComplete, 180);
       }
-      setProgress(Math.min(prog, 100));
-      setPhase(Math.min(Math.floor((Math.min(prog, 100) / 100) * (PHASES.length - 1)), PHASES.length - 1));
-    }, 48);
-    return () => clearInterval(interval);
+    }, 24);
+    return () => window.clearInterval(interval);
   }, [onComplete]);
 
   useEffect(() => {
@@ -95,7 +107,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       {visible && (
         <motion.div
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.65, ease: "easeInOut" }}
+          transition={{ duration: 0.18, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
           style={{ background: "#060811" }}
         >

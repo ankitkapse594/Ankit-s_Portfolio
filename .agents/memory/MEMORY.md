@@ -1,0 +1,1 @@
+- [Portrait visibility](portrait-visibility.md) — Keep the uploaded portrait clearly visible behind readable portfolio content on desktop and mobile.
